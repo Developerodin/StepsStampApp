@@ -16,6 +16,7 @@ import WelcomeScreen from "./pages/onboarding/splashScreen/WelcomeScreen";
 import * as SplashScreen from "expo-splash-screen";
 import { Profile } from "./pages/profile/Profile";
 import { AppProvider } from "./context/AppContext";
+import { AppSlides } from "./pages/onboarding/appSlides/AppSlides";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -146,13 +147,21 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "Tabs"
+            "AppSlides"
           //  Auth ? "Tabs" : "Login"
           }
         >
        <Stack.Screen
             name="Tabs"
             component={Tabs}
+            options={{
+              headerShown: false,
+            }}
+          />
+
+<Stack.Screen
+            name="AppSlides"
+            component={AppSlides}
             options={{
               headerShown: false,
             }}

@@ -11,14 +11,14 @@ export const WelcomeScreen = () => {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1, // Final opacity value of 1
-      duration: 3000, // Duration of 3 seconds
+      duration: 2000, // Duration of 3 seconds
       useNativeDriver: true,
     }).start();
   }, [fadeAnim]);
 
   return (
     <View style={styles.container}>
-      <StatusBar hidden={true} />
+      <StatusBar translucent={true} backgroundColor="transparent" style="auto" />
       <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", flex: 1 }}>
       <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
       <Animated.Image
@@ -32,6 +32,20 @@ export const WelcomeScreen = () => {
       </View>
       
       </View>
+
+      <View style={{position:"absolute",top:0,left:0}}>
+      <Image
+               source={require('../../../assets/images/GradientTopLeft.png')} 
+               style={{opacity:0.3}}
+             />
+      </View>
+      <View style={{position:"absolute",bottom:0,right:0}}>
+      <Image
+               source={require('../../../assets/images/GradientBottomRight.png')} 
+               style={{opacity:0.3}}
+               
+             />
+      </View>
     </View>
   );
 };
@@ -41,7 +55,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     height: height,
-    backgroundColor: "#000000",
+    backgroundColor: "#181A20",
+    
   },
   logo: {
     resizeMode: 'contain',
@@ -49,3 +64,7 @@ const styles = StyleSheet.create({
 });
 
 export default WelcomeScreen;
+
+
+
+
