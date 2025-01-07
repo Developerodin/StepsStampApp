@@ -17,6 +17,13 @@ import * as SplashScreen from "expo-splash-screen";
 import { Profile } from "./pages/profile/Profile";
 import { AppProvider } from "./context/AppContext";
 import { AppSlides } from "./pages/onboarding/appSlides/AppSlides";
+import { SignInScreen } from "./pages/SignIn/SignInScreen";
+import { Login } from "./pages/SignIn/Login";
+import { NewUser } from "./pages/Registration/NewUser";
+import { Calender } from "./pages/Registration/Calender";
+import { Guide } from "./pages/onboarding/Guide/Guide";
+import { ChooseBlockChain } from "./pages/BlockChain/ChooseBlockChain";
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -147,7 +154,7 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "AppSlides"
+            "Guide"
           //  Auth ? "Tabs" : "Login"
           }
         >
@@ -166,8 +173,54 @@ export default function Index() {
               headerShown: false,
             }}
           />
+<Stack.Screen
+            name="Login"
+            component={SignInScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="SignIn"
+            component={Login}
+            options={{
+              headerShown: false,
+            }}
+          />
+
+<Stack.Screen
+            name="NewUser"
+            component={NewUser}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="Calender"
+            component={Calender}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="Guide"
+            component={Guide}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="ChooseBlockChain"
+            component={ChooseBlockChain}
+            options={{
+              headerShown: false,
+            }}
+          />
 
         </Stack.Navigator>
+
+        
+
       
     </NavigationContainer>
     </NavigationIndependentTree>

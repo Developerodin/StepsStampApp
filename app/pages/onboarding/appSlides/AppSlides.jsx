@@ -1,6 +1,7 @@
 import React,{useRef, useState} from 'react';
 import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated } from 'react-native';
 
+
 const slides = [
   {
     id: 1,
