@@ -5,25 +5,28 @@ import { StatusBar } from 'expo-status-bar';
 import Slide1 from '../../../assets/images/slide1.png';
 import Slide2 from '../../../assets/images/slide2.png';
 import Slide3 from '../../../assets/images/slide3.png';
-
+import { useNavigation } from "@react-navigation/native";
 
 const slides = [
   {
     id: 1,
-    title: 'Slide 1',
-    description: 'This is the description for slide 1.',
+    title: 'Turn Every Step Into',
+    title2: 'Progress',
+    description: 'Track your daily steps effortlessly with our advanced fitness tracker. Every move you make not only keeps you healthy but also powers your journey toward exciting rewards!"',
     image: Slide1,
   },
   {
     id: 2,
-    title: 'Slide 2',
-    description: 'This is the description for slide 2.',
+    title: 'Fitness Meets Financial',
+    title2: 'Rewards',
+    description: 'Convert your steps into valuable tokens effortlessly. Each step is a step closer to financial freedom. Start building wealth while achieving your fitness goals.',
     image: Slide2,
   },
   {
     id: 3,
-    title: 'Slide 3',
-    description: 'This is the description for slide 3.',
+    title: 'Long Term Returns on Every',
+    title2: 'Step',
+    description: 'Invest your earned tokens in blockchain-powered assets. Watch your rewards grow with healthy, sustainable returns while you stay motivated and active.',
     image: Slide3,
   },
 ];
@@ -31,6 +34,7 @@ const slides = [
 const { width } = Dimensions.get('window');
 
 export const AppSlides = () => {
+  const navigation = useNavigation();
   const [currentIndex,setCurrentIndex] = useState(0)
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -47,6 +51,7 @@ export const AppSlides = () => {
       slidesRef.current.scrollToIndex({index:currentIndex + 1});
     }else{
       console.log('Last slide');
+      navigation.navigate("Guide")
     }
     };
 
@@ -64,39 +69,52 @@ export const AppSlides = () => {
     <View style={[styles.slide,{width}]}>
       <Image source={item.image } style={[styles.image,{resizeMode:'contain'}]} />
 
-      <View style={{flex:0.3}}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.description}>{item.description}</Text>
-      </View>
+   
      
     </View>
   );
 
-  const Paginator = ({data, scrollX} )=>{
+  const Paginator = ({ data, scrollX }) => {
     return (
-      <View style={{flexDirection:'row',height:64 ,alignSelf:'center'}}>
-         {
-          data && data.map((_,i) => {
+      <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+        {data &&
+          data.map((_, i) => {
             const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
-
-
+  
             const dotWidth = scrollX.interpolate({
               inputRange,
-              outputRange: [10, 20, 10],
+              outputRange: [5, 25, 5], // Active dot will have a width of 20, others 10
               extrapolate: 'clamp',
             });
-
-            const opacity = scrollX.interpolate({
+  
+            const backgroundColor = scrollX.interpolate({
               inputRange,
-              outputRange:[0.3, 1, 0.3],
+              outputRange: ['white', '#246BFD', 'white'], // Active dot is blue, others white
               extrapolate: 'clamp',
-            })
-            return <Animated.View style = {[styles.dot,{width:dotWidth,opacity}]} key={i.toString()}/>
-          })
-         }
+            });
+  
+            return (
+              <Animated.View
+                key={i.toString()}
+                style={[
+                  styles.dot,
+                  {
+                    width: dotWidth,
+                    backgroundColor,
+                  },
+                ]}
+              />
+            );
+          })}
       </View>
-    )
-  }
+    );
+  };
+
+  const activeSlide = slides[currentIndex];
+
+  useEffect(()=>{
+   console.log("Index active ==>",currentIndex)
+  },[currentIndex])
 
   return (
     <View style={styles.container}>
@@ -113,7 +131,7 @@ export const AppSlides = () => {
           style={{width: 93, height: 93, resizeMode: 'contain', opacity: 0.4}}
         />
       </View>
-        <View style={styles.content}>
+        <View style={[{flex:1,position:"relative"}]}>
       <Animated.View style={{ opacity: fadeAnim }}>
       <View style={{flex:0.8 }}>
       <FlatList
@@ -130,15 +148,38 @@ export const AppSlides = () => {
       ref={slidesRef}
     />
       </View>
-      <View style={styles.cardBackgroundContainer}>
+     
+    </Animated.View>
+
+    
+    <View style={styles.cardBackgroundContainer}>
           <Image
             source={require('../../../assets/images/SlidesBg.png')} // Ensure path is correct for the card background
             style={styles.cardBackgroundImage}
           />
-          <Paginator data={slides} scrollX={scrollX} />
+         
+         <View style={{position:"absolute",top:20}}>
+         <Paginator data={slides} scrollX={scrollX} />
+         </View>
+
+         <View style={{position:"absolute",top:50,width:width*0.9}}>
+         <View >
+      <Text style={styles.title}>{activeSlide.title}</Text>
+      <Text style={styles.title}>{activeSlide.title2}</Text>
+      <Text style={[styles.description,{marginTop:20}]}>{activeSlide.description}</Text>
+      </View>
+         </View>
         </View>
-    <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / slides.length)} />
-    </Animated.View>
+        
+
+        <View style={{ position: "absolute", bottom:32, left:0, right: 0, alignItems: "center",justifyContent:"center" }}>
+  <NextButton 
+    scrollTo={scrollTo} 
+    percentage={(currentIndex + 1) * (100 / slides.length)} 
+    
+  />
+</View>
+    
     </View>
     </View>
    
@@ -186,42 +227,44 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 28,
-    fontWeight: '800',
+    fontSize: 27,
+    fontWeight: '600',
     textAlign: 'center',
     
-    color:"#493d8a",
-    textAlign:'center'
+    color:"#ffff",
+    textAlign:'center',
+    letterSpacing:1
   },
   description: {
     fontWeight:'300',
-    fontSize: 16,
+    fontSize: 13,
     textAlign: 'center',
-
-    paddingHorizontal:64
+    color:"#FFFFFF",
+    paddingHorizontal:24,
+    lineHeight:20,
+    letterSpacing:1
   },
   dot:{
-    height:10,
-    borderRadius:5,
-    backgroundColor:"#493d8a",
-    marginHorizontal:8,
+    height:5,
+    borderRadius:50,
+    marginHorizontal:3,
     
   },
   cardBackgroundContainer: {
-    width: '100%',
+ 
     alignItems: 'center',
-    
-    
-   
+    justifyContent: 'center',
+    flexDirection: 'row',
+
+    position:"absolute",
+    bottom:60,
+    width:width
   },
   cardBackgroundImage: {
-    width: 350,
-    height: 250,
-    resizeMode: 'contain',
+
+    height:295,
+    width:400
     
-    position: 'absolute',
-    top: 0,
-    left: "5%",
-    bottom: 40,
+    
   },
 });
