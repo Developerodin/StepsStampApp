@@ -113,8 +113,9 @@ export const AppSlides = () => {
           style={{width: 93, height: 93, resizeMode: 'contain', opacity: 0.4}}
         />
       </View>
+        <View style={styles.content}>
       <Animated.View style={{ opacity: fadeAnim }}>
-      <View style={{flex:3}}>
+      <View style={{flex:0.8 }}>
       <FlatList
       data={slides}
       renderItem={renderItem}
@@ -129,9 +130,16 @@ export const AppSlides = () => {
       ref={slidesRef}
     />
       </View>
-      <Paginator data={slides} scrollX={scrollX}/>
+      <View style={styles.cardBackgroundContainer}>
+          <Image
+            source={require('../../../assets/images/SlidesBg.png')} // Ensure path is correct for the card background
+            style={styles.cardBackgroundImage}
+          />
+          <Paginator data={slides} scrollX={scrollX} />
+        </View>
     <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / slides.length)} />
     </Animated.View>
+    </View>
     </View>
    
   );
@@ -143,6 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: "#181A20",
+    
   },
   topLeftGradient: {
     position: "absolute",
@@ -159,22 +168,28 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     opacity: 0.2,
   },
+  content: {
+   
+  },
   slide: {
-    marginTop: 80,
+    marginTop: 0,
     
     justifyContent: 'center',
     alignItems: 'center',
+
     
   },
   image: {
     width: 320,
+    height:280,
     justifyContent: 'center',
+    
   },
   title: {
     fontSize: 28,
     fontWeight: '800',
     textAlign: 'center',
-    marginBottom:10,
+    
     color:"#493d8a",
     textAlign:'center'
   },
@@ -191,5 +206,22 @@ const styles = StyleSheet.create({
     backgroundColor:"#493d8a",
     marginHorizontal:8,
     
-  }
+  },
+  cardBackgroundContainer: {
+    width: '100%',
+    alignItems: 'center',
+    
+    
+   
+  },
+  cardBackgroundImage: {
+    width: 350,
+    height: 250,
+    resizeMode: 'contain',
+    
+    position: 'absolute',
+    top: 0,
+    left: "5%",
+    bottom: 40,
+  },
 });

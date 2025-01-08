@@ -15,7 +15,7 @@ import Svg, { G, Circle } from "react-native-svg";
 import React, { useEffect, useRef } from "react";
 
 export const NextButton = ({ percentage, scrollTo }) => {
-  const size = 98;
+  const size = 55;
   const strokeWidth = 2.5;
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
@@ -86,9 +86,11 @@ export const NextButton = ({ percentage, scrollTo }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: -220,
+    
   },
   text: {
     fontSize: 20,
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "#4b3e8e",
     borderRadius: 100,
-    padding: 28,
+    padding: 5,
   },
 });
 
