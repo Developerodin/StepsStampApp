@@ -46,12 +46,12 @@ export const Guide = () => {
           style={styles.gradientImage}
         />
       </View>
-      {/* <View style={styles.bottomRightGradient}>
+      <View style={styles.bottomRightGradient}>
         <Image
-          source={require('../../assets/images/GradientBottomRight.png')}
-          style={styles.gradientImage}
+          source={require('../../../assets/images/GradientCenter.png')}
+          style={{width: 93, height: 93, resizeMode: 'contain', opacity: 0.4}}
         />
-      </View> */}
+      </View>
 
       {/* Main Content */}
       <View style={styles.content}>
@@ -118,8 +118,9 @@ const styles = StyleSheet.create({
   },
   bottomRightGradient: {
     position: "absolute",
-    bottom: -150,
-    right: -100,
+    top: 150,
+    right: -25,
+    
   },
   gradientImage: {
     resizeMode: "contain",

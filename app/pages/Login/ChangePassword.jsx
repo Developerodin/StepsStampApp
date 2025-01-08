@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-export const NewUser = () => {
+export const ChangePassword = () => {
   const navigation = useNavigation();
   const handelBack = () => {
     navigation.goBack();
@@ -68,12 +68,12 @@ export const NewUser = () => {
           </TouchableOpacity>
 
           {/* Title */}
-          <Text style={styles.title}>New user?</Text>
-          <Text style={[styles.title, { marginBottom: 0 }]}>Sign Up</Text>
+          <Text style={styles.title}>Change</Text>
+          <Text style={[styles.title, { marginBottom: 0 }]}>password</Text>
 
           <View style={{ marginTop: 30 }}>
 
-          <Text style={styles.inputLabel}>FULL NAME</Text>
+          <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
           <View
             style={[
               styles.inputContainer,
@@ -89,30 +89,7 @@ export const NewUser = () => {
               onBlur={() => setIsFocused(false)}
             />
             <Ionicons
-              name="close-circle"
-              size={20}
-              color="#3A3D46"
-              style={styles.clearIcon}
-            />
-          </View>
-
-          <Text style={styles.inputLabel}>YOUR USERNAME</Text>
-          <View
-            style={[
-              styles.inputContainer,
-              { borderBottomColor: isFocused ? "#F78300" : "#ccc" },
-            ]}
-          >
-            <TextInput
-              style={styles.input}
-              placeholder="YOUR EMAIL"
-              placeholderTextColor="#ccc"
-              defaultValue="Username"
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-            />
-            <Ionicons
-              name="person-circle"
+              name="eye"
               size={20}
               color="#3A3D46"
               style={styles.clearIcon}
@@ -130,7 +107,7 @@ export const NewUser = () => {
               style={styles.input}
               placeholder="YOUR EMAIL"
               placeholderTextColor="#ccc"
-              defaultValue="hello@TheOdin.in"
+              defaultValue="The Odin"
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
@@ -141,10 +118,12 @@ export const NewUser = () => {
               style={styles.clearIcon}
             />
           </View>
+
+          
           </View>
 
-          <TouchableOpacity style={styles.primaryButton} onPress={handelSign}>
-            <Text style={styles.primaryButtonText}>SIGN UP</Text>
+          <TouchableOpacity style={styles.primaryButton} onPress={handelSign} >
+            <Text style={styles.primaryButtonText}>SET PASSWORD</Text>
           </TouchableOpacity>
         </Animated.View>
       </View>
@@ -199,6 +178,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 0,
     alignSelf: "flex-start",
+    marginTop: 20,
   },
   inputContainer: {
     flexDirection: "row",
@@ -237,6 +217,7 @@ const styles = StyleSheet.create({
     width: width * 0.75,
     alignSelf: "center",
     marginTop: 30,
+    opacity: 0.5,
   },
   buttonIcon: {
     marginRight: 10,
@@ -248,4 +229,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewUser;
+export default ChangePassword;

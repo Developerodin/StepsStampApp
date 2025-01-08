@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
@@ -20,6 +21,10 @@ export const ChooseBlockChain = () => {
   const handelBack = () => {
     navigation.goBack();
   };
+
+  const handelTry = () => {
+    navigation.navigate('LoginScreen');
+    };
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity value of 0
 
   useEffect(() => {
@@ -84,7 +89,7 @@ export const ChooseBlockChain = () => {
             {/* Two Column Section */}
             <View style={styles.twoColumnCard}>
           <View style={styles.headerRow}>
-            <Text style={styles.headerText}>Phase B <Text style={{color: '#242731'}}>(Current Active)</Text></Text>
+            <Text style={styles.headerText}>Phase B <Text style={{color: '#3A3D46'}}>(Current Active)</Text></Text>
             <Text style={styles.headerLink}>Know More</Text>
           </View>
          
@@ -109,6 +114,11 @@ export const ChooseBlockChain = () => {
               renderItem={renderPackage}
               contentContainerStyle={styles.packageScroller}
             />
+<TouchableOpacity style={styles.secondaryButton} onPress={handelTry}>
+            
+            <Text style={styles.secondaryButtonText}>OR START WITH FREE TRIAL</Text>
+          </TouchableOpacity>
+
           </ScrollView>
         </Animated.View>
       </View>
@@ -223,7 +233,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   columnText: {
-    color: '#242731',
+    color: '#3A3D46',
     fontSize: 12,
     marginBottom: 0,
   },
@@ -260,6 +270,24 @@ const styles = StyleSheet.create({
     color: '#FFD700',
     fontSize: 14,
     marginTop: 5,
+  },
+  secondaryButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    paddingVertical: 12,
+    borderRadius: 40,
+    width: width * 0.75,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginBottom: 15,
+    borderColor: '#1877F2',
+    borderWidth: 1,
+  },
+  secondaryButtonText: {
+    color: '#246BFD',
+    marginLeft: 10,
+    fontSize: 12,
   },
 });
 

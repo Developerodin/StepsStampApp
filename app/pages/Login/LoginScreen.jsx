@@ -6,13 +6,13 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get('window');
 
-export const SignInScreen = () => {
+export const LoginScreen = () => {
     const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity value of 0
     const [isFocused, setIsFocused] = useState(false);
 
-    const handleSignIn = () => {
-    navigation.navigate('SignIn');
+    const handleForgotPassword = () => {
+    navigation.navigate('ForgotPassword');
     };
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -50,13 +50,15 @@ export const SignInScreen = () => {
           />
 
           {/* Title */}
-          <Text style={styles.title}>What’s your </Text>
-                       <Text style={[styles.title, { marginBottom: 0 }]}>email</Text>
-                       <Text style={[styles.title, { marginBottom: 30 }]}>address?</Text>
+          <Text style={styles.title}>Welcome, User</Text>
+                       <Text style={[styles.title, { marginBottom: 0 }]}>Let's get started</Text>
+                       
 
 
           {/* Input Field */}
-          <Text style={styles.inputLabel}>YOUR EMAIL</Text>
+          <Text style={{color: '#3A3D46',
+    fontSize: 12,marginVertical: 10}}>Using <Text style={{color: "#fff",textDecorationLine: "underline"}}>hello@kijihub.com</Text> to login</Text>
+          <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
           <View style={[styles.inputContainer, { borderBottomColor: isFocused ? '#F78300' : '#ccc' }]}>
   <TextInput
     style={styles.input}
@@ -67,17 +69,20 @@ export const SignInScreen = () => {
     onBlur={() => setIsFocused(false)}
   />
             <Ionicons
-              name="close-circle"
+              name="eye"
               size={20}
               color="#3A3D46"
               style={styles.clearIcon}
             />
           </View>
+          <TouchableOpacity onPress={handleForgotPassword}>
+          <Text style={{color: '#35ABFF',alignSelf: 'flex-end',marginBottom: 20,fontSize: 15}}>Forgot Password?</Text>
+          </TouchableOpacity>
 
           {/* Continue Button */}
-          <TouchableOpacity style={styles.primaryButton} onPress={handleSignIn}>
-            <Ionicons name="mail" size={20} color="#fff" style={styles.buttonIcon} />
-            <Text style={styles.primaryButtonText}>CONTINUE WITH EMAIL</Text>
+          <TouchableOpacity style={styles.primaryButton} >
+            
+            <Text style={styles.primaryButtonText}>LOGIN</Text>
           </TouchableOpacity>
 
           {/* Social Buttons */}
@@ -97,17 +102,7 @@ export const SignInScreen = () => {
           </TouchableOpacity>
 
           {/* Divider */}
-          <Text style={styles.orText}>or</Text>
-
-          {/* Metamask Button */}
-          <View style={{marginTop: 5}}>
-          <TouchableOpacity style={styles.metamaskButton}>
-            <Image
-              source={require('../../assets/icons/metamask-logo.png')} // Replace with your Metamask logo path
-              style={styles.metamaskIcon}
-            />
-          </TouchableOpacity>
-          </View>
+          
         </Animated.View>
       </View>
     </View>
@@ -138,11 +133,11 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   content: {
-    flex: 1,
+    marginTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   logo: {
     width: 50,
@@ -163,6 +158,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 5,
     alignSelf: 'flex-start',
+    marginTop: 30,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -242,4 +238,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default LoginScreen;

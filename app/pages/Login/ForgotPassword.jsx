@@ -16,14 +16,14 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-export const NewUser = () => {
+export const ForgotPassword = () => {
   const navigation = useNavigation();
   const handelBack = () => {
     navigation.goBack();
   };
 
   const handelSign = () => {
-    navigation.navigate('Calender');
+    navigation.navigate('OTPVerify');
     };
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity value of 0
   const [isFocused, setIsFocused] = useState(false);
@@ -68,12 +68,12 @@ export const NewUser = () => {
           </TouchableOpacity>
 
           {/* Title */}
-          <Text style={styles.title}>New user?</Text>
-          <Text style={[styles.title, { marginBottom: 0 }]}>Sign Up</Text>
+          <Text style={styles.title}>Forgot</Text>
+          <Text style={[styles.title, { marginBottom: 0 }]}>password?</Text>
 
           <View style={{ marginTop: 30 }}>
 
-          <Text style={styles.inputLabel}>FULL NAME</Text>
+          <Text style={styles.inputLabel}>YOUR EMAIL?</Text>
           <View
             style={[
               styles.inputContainer,
@@ -96,55 +96,11 @@ export const NewUser = () => {
             />
           </View>
 
-          <Text style={styles.inputLabel}>YOUR USERNAME</Text>
-          <View
-            style={[
-              styles.inputContainer,
-              { borderBottomColor: isFocused ? "#F78300" : "#ccc" },
-            ]}
-          >
-            <TextInput
-              style={styles.input}
-              placeholder="YOUR EMAIL"
-              placeholderTextColor="#ccc"
-              defaultValue="Username"
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-            />
-            <Ionicons
-              name="person-circle"
-              size={20}
-              color="#3A3D46"
-              style={styles.clearIcon}
-            />
-          </View>
-
-          <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
-          <View
-            style={[
-              styles.inputContainer,
-              { borderBottomColor: isFocused ? "#F78300" : "#ccc" },
-            ]}
-          >
-            <TextInput
-              style={styles.input}
-              placeholder="YOUR EMAIL"
-              placeholderTextColor="#ccc"
-              defaultValue="hello@TheOdin.in"
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-            />
-            <Ionicons
-              name="eye"
-              size={20}
-              color="#3A3D46"
-              style={styles.clearIcon}
-            />
-          </View>
+          
           </View>
 
           <TouchableOpacity style={styles.primaryButton} onPress={handelSign}>
-            <Text style={styles.primaryButtonText}>SIGN UP</Text>
+            <Text style={styles.primaryButtonText}>CONFIRM</Text>
           </TouchableOpacity>
         </Animated.View>
       </View>
@@ -248,4 +204,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewUser;
+export default ForgotPassword;

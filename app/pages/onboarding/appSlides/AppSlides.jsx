@@ -1,5 +1,7 @@
 import React,{useRef, useState} from 'react';
 import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated } from 'react-native';
+import NextButton  from './NextButton';
+import { StatusBar } from 'expo-status-bar';
 
 
 const slides = [
@@ -42,6 +44,16 @@ export const AppSlides = () => {
 
    const viewConfig = useRef({viewAreaCoveragePercentThreshold:50}).current;
 
+   const scrollTo = () => {
+
+    if(currentIndex < slides.length - 1){
+      slidesRef.current.scrollToIndex({index:currentIndex + 1});
+    }else{
+      console.log('Last slide');
+    }
+    };
+
+
   const renderItem = ({ item }) => (
     <View style={[styles.slide,{width}]}>
       <Image source={{ uri: item.image }} style={[styles.image,{width,resizeMode:'contain'}]} />
@@ -82,6 +94,7 @@ export const AppSlides = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={{flex:3}}>
       <FlatList
       data={slides}
@@ -98,6 +111,7 @@ export const AppSlides = () => {
     />
       </View>
       <Paginator data={slides} scrollX={scrollX}/>
+    <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / slides.length)} />
     </View>
    
   );

@@ -23,6 +23,10 @@ import { NewUser } from "./pages/Registration/NewUser";
 import { Calender } from "./pages/Registration/Calender";
 import { Guide } from "./pages/onboarding/Guide/Guide";
 import { ChooseBlockChain } from "./pages/BlockChain/ChooseBlockChain";
+import {LoginScreen} from "./pages/Login/LoginScreen";
+import {ForgotPassword} from "./pages/Login/ForgotPassword";
+import {OTPVerify }from "./pages/Login/OTPVerify";
+import {ChangePassword} from "./pages/Login/ChangePassword";
 
 
 const Stack = createNativeStackNavigator();
@@ -154,7 +158,7 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "Guide"
+            "AppSlides"
           //  Auth ? "Tabs" : "Login"
           }
         >
@@ -212,6 +216,34 @@ export default function Index() {
 <Stack.Screen
             name="ChooseBlockChain"
             component={ChooseBlockChain}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="OTPVerify"
+            component={OTPVerify}
+            options={{
+              headerShown: false,
+            }}
+          />
+<Stack.Screen
+            name="ChangePassword"
+            component={ChangePassword}
             options={{
               headerShown: false,
             }}

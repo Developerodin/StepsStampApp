@@ -7,7 +7,7 @@ import OTPInput from '../../components/OTP/OTPInput';
 
 const { width, height } = Dimensions.get('window');
 
-export const Login = () => {
+export const OTPVerify = () => {
     const navigation = useNavigation();
     const handelBack = () => {
     navigation.goBack();
@@ -18,7 +18,7 @@ export const Login = () => {
     const [otp, setOtp] = useState('');
 
     const handelVerify = () => {
-        navigation.navigate('NewUser');
+        navigation.navigate('ChangePassword');
     };
 
     const handleOTPChange = (otpValue) => {
@@ -65,14 +65,14 @@ export const Login = () => {
             </TouchableOpacity>
 
           {/* Title */}
-          <Text style={styles.title}>Please </Text>
-                       <Text style={[styles.title, { marginBottom: 0 }]}>confirm your</Text>
-                       <Text style={[styles.title, { marginBottom: 10 }]}>identity</Text>
+          
+                       <Text style={[styles.title, { marginBottom: 0 }]}>OTP</Text>
+                       <Text style={[styles.title, { marginBottom: 10 }]}>verification</Text>
 
 
           {/* Input Field */}
-          <Text style={styles.inputLabel}>We have sent you an OTP to</Text>
-          <Text style={[styles.inputLabel ,{ marginBottom: 50 }]}>you email <Text style={{color: "#fff"}}>theodin@theodin.in</Text></Text>
+          <Text style={[styles.inputLabel,{ marginTop: 15 }]}>We have sent you an OTP to</Text>
+          <Text style={[styles.inputLabel ,{ marginBottom: 25 }]}>you email <Text style={{color: "#fff"}}>theodin@theodin.in</Text></Text>
           <View style={styles.inputContainer}>
           <OTPInput length={6} onChangeOTP={handleOTPChange} />
           
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     color: '#3A3D46',
-    fontSize: 12,
+    fontSize: 14,
     marginBottom: 0,
     alignSelf: 'flex-start',
   },
@@ -190,4 +190,4 @@ const styles = StyleSheet.create({
  
 });
 
-export default Login;
+export default OTPVerify;
