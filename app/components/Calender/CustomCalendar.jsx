@@ -43,11 +43,26 @@ const CustomCalendar = ({ onDateChange }) => {
     onDateChange?.({ day: selectedDay, month: selectedMonth, year });
   };
 
-  const handleScrollEnd = (event, data, setSelected) => {
+  const handleScroll = (event, data, setSelected) => {
     const offsetY = event.nativeEvent.contentOffset.y;
-    const index = Math.round(offsetY / ITEM_HEIGHT);
-    setSelected(data[index]);
+    
+    // Adjust for the new top position of linesContainer
+    const containerTop = (height - ITEM_HEIGHT * 1.8) / 3;
+  
+    // Calculate the center index based on the scroll position
+    const centerOffset = offsetY - containerTop;  // Subtract the container's top offset
+    const centerIndex = Math.round(centerOffset / ITEM_HEIGHT);  // Divide by ITEM_HEIGHT to get the index
+  
+    // Get the item at the calculated center index
+    const item = data[centerIndex];
+  
+    if (item) {
+      setSelected(item); // Update the selected state
+      onDateChange?.({ day: selectedDay, month: selectedMonth, year: selectedYear });
+    }
   };
+
+ 
 
   const renderItem = (item, selectedValue, onPress) => (
     <TouchableOpacity onPress={() => onPress(item)}>
@@ -71,24 +86,23 @@ const CustomCalendar = ({ onDateChange }) => {
       <View style={styles.pickerContainer}>
         {/* Days */}
         <FlatList
-          data={days}
-          keyExtractor={(item) => item.toString()}
-          renderItem={({ item }) =>
-            renderItem(item, selectedDay, handleDayChange)
-          }
-          horizontal={false}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.list}
-          getItemLayout={(data, index) => ({
-            length: ITEM_HEIGHT,
-            offset: ITEM_HEIGHT * index,
-            index,
-          })}
-          initialScrollIndex={selectedDay - 1}
-          onMomentumScrollEnd={(event) =>
-            handleScrollEnd(event, days, setSelectedDay)
-          }
-        />
+  data={days}
+  keyExtractor={(item) => item.toString()}
+  renderItem={({ item }) => renderItem(item, selectedDay, handleDayChange)}
+  horizontal={false}
+  showsVerticalScrollIndicator={false}
+  contentContainerStyle={styles.list}
+  getItemLayout={(data, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index,
+    index,
+  })}
+  initialScrollIndex={selectedDay - 1}
+  onScroll={(event) => handleScroll(event, days, setSelectedDay)}
+  onMomentumScrollEnd={(event) => handleScroll(event, days, setSelectedDay)}
+  snapToInterval={ITEM_HEIGHT} // Ensure the list snaps to item positions
+  decelerationRate="fast" // Smooth scrolling
+/>
 
         {/* Months */}
         <FlatList
@@ -106,9 +120,7 @@ const CustomCalendar = ({ onDateChange }) => {
             index,
           })}
           initialScrollIndex={selectedMonth - 1}
-          onMomentumScrollEnd={(event) =>
-            handleScrollEnd(event, months, setSelectedMonth)
-          }
+          
         />
 
         {/* Years */}
@@ -127,9 +139,7 @@ const CustomCalendar = ({ onDateChange }) => {
             index,
           })}
           initialScrollIndex={years.indexOf(selectedYear)}
-          onMomentumScrollEnd={(event) =>
-            handleScrollEnd(event, years, setSelectedYear)
-          }
+          
         />
       </View>
 
@@ -159,7 +169,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
-    color: "#ccc",
+    color: "#424242",
     paddingVertical: 10,
     textAlign: "center",
     height: ITEM_HEIGHT,
@@ -172,7 +182,7 @@ const styles = StyleSheet.create({
   },
   linesContainer: {
     position: "absolute",
-    top: 50,
+    top: (height - ITEM_HEIGHT * 1.8) / 3,
     left: 0,
     right: 0,
     height: ITEM_HEIGHT * 0.9,
