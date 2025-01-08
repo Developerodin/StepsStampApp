@@ -1,7 +1,10 @@
-import React,{useRef, useState} from 'react';
+import React,{useRef, useState , useEffect} from 'react';
 import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated } from 'react-native';
 import NextButton  from './NextButton';
 import { StatusBar } from 'expo-status-bar';
+import Slide1 from '../../../assets/images/slide1.png';
+import Slide2 from '../../../assets/images/slide2.png';
+import Slide3 from '../../../assets/images/slide3.png';
 
 
 const slides = [
@@ -9,25 +12,19 @@ const slides = [
     id: 1,
     title: 'Slide 1',
     description: 'This is the description for slide 1.',
-    image: 'https://static.vecteezy.com/system/resources/previews/000/517/088/original/vector-landscape-illustration.png',
+    image: Slide1,
   },
   {
     id: 2,
     title: 'Slide 2',
     description: 'This is the description for slide 2.',
-    image: 'https://static.vecteezy.com/system/resources/previews/000/517/088/original/vector-landscape-illustration.png',
+    image: Slide2,
   },
   {
     id: 3,
     title: 'Slide 3',
     description: 'This is the description for slide 3.',
-    image: 'https://static.vecteezy.com/system/resources/previews/000/517/088/original/vector-landscape-illustration.png',
-  },
-  {
-    id: 4,
-    title: 'Slide 4',
-    description: 'This is the description for slide 4.',
-    image: 'https://static.vecteezy.com/system/resources/previews/000/517/088/original/vector-landscape-illustration.png',
+    image: Slide3,
   },
 ];
 
@@ -53,10 +50,19 @@ export const AppSlides = () => {
     }
     };
 
+    const fadeAnim = useRef(new Animated.Value(0)).current; 
+    useEffect(() => {
+      Animated.timing(fadeAnim, {
+        toValue: 1, // Final opacity value of 1
+        duration: 2000, // Duration of 2 seconds
+        useNativeDriver: true,
+      }).start();
+    }, [fadeAnim]);
+
 
   const renderItem = ({ item }) => (
     <View style={[styles.slide,{width}]}>
-      <Image source={{ uri: item.image }} style={[styles.image,{width,resizeMode:'contain'}]} />
+      <Image source={item.image } style={[styles.image,{resizeMode:'contain'}]} />
 
       <View style={{flex:0.3}}>
       <Text style={styles.title}>{item.title}</Text>
@@ -68,7 +74,7 @@ export const AppSlides = () => {
 
   const Paginator = ({data, scrollX} )=>{
     return (
-      <View style={{flexDirection:'row',height:64}}>
+      <View style={{flexDirection:'row',height:64 ,alignSelf:'center'}}>
          {
           data && data.map((_,i) => {
             const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
@@ -94,7 +100,20 @@ export const AppSlides = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar translucent={true} backgroundColor="#181A20" style="light" />
+      <View style={styles.topLeftGradient}>
+        <Image
+          source={require("../../../assets/images/GradientTopLeft.png")}
+          style={styles.gradientImage}
+        />
+      </View>
+      <View style={styles.bottomRightGradient}>
+        <Image
+          source={require('../../../assets/images/GradientCenter.png')}
+          style={{width: 93, height: 93, resizeMode: 'contain', opacity: 0.4}}
+        />
+      </View>
+      <Animated.View style={{ opacity: fadeAnim }}>
       <View style={{flex:3}}>
       <FlatList
       data={slides}
@@ -112,6 +131,7 @@ export const AppSlides = () => {
       </View>
       <Paginator data={slides} scrollX={scrollX}/>
     <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / slides.length)} />
+    </Animated.View>
     </View>
    
   );
@@ -122,15 +142,32 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: "#181A20",
+  },
+  topLeftGradient: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+  },
+  bottomRightGradient: {
+    position: "absolute",
+    top: 150,
+    right: -25,
+    
+  },
+  gradientImage: {
+    resizeMode: "contain",
+    opacity: 0.2,
   },
   slide: {
-    flex:1,
+    marginTop: 80,
+    
     justifyContent: 'center',
     alignItems: 'center',
     
   },
   image: {
-    flex:0.7,
+    width: 320,
     justifyContent: 'center',
   },
   title: {
