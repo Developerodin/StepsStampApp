@@ -31,7 +31,7 @@ const slides = [
   },
 ];
 
-const { width } = Dimensions.get('window');
+const { width,height } = Dimensions.get('window');
 
 export const AppSlides = () => {
   const navigation = useNavigation();
@@ -262,8 +262,11 @@ const styles = StyleSheet.create({
   },
   cardBackgroundImage: {
 
-    height:295,
-    width:400
+    height:297,
+    width:width*0.9,
+    
+
+    
     
     
   },
