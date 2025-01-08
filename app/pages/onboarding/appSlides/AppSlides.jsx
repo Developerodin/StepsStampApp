@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import Slide1 from '../../../assets/images/slide1.png';
 import Slide2 from '../../../assets/images/slide2.png';
 import Slide3 from '../../../assets/images/slide3.png';
-
+import { useNavigation } from "@react-navigation/native";
 
 const slides = [
   {
@@ -34,6 +34,7 @@ const slides = [
 const { width } = Dimensions.get('window');
 
 export const AppSlides = () => {
+  const navigation = useNavigation();
   const [currentIndex,setCurrentIndex] = useState(0)
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -50,6 +51,7 @@ export const AppSlides = () => {
       slidesRef.current.scrollToIndex({index:currentIndex + 1});
     }else{
       console.log('Last slide');
+      navigation.navigate("Guide")
     }
     };
 
