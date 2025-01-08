@@ -15,7 +15,7 @@ import Svg, { G, Circle } from "react-native-svg";
 import React, { useEffect, useRef } from "react";
 
 export const NextButton = ({ percentage, scrollTo }) => {
-  const size = 55;
+  const size = 59;
   const strokeWidth = 2.5;
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
@@ -60,7 +60,7 @@ export const NextButton = ({ percentage, scrollTo }) => {
       <Svg width={size} height={size}>
         <G rotation="-90" origin={center}>
           <Circle
-            stroke="#E6E7E8"
+            stroke="#4b3e8e"
             cx={center}
             cy={center}
             r={radius}
@@ -77,8 +77,8 @@ export const NextButton = ({ percentage, scrollTo }) => {
           />
         </G>
       </Svg>
-      <TouchableOpacity style={styles.button} onPress={scrollTo}>
-        <AntDesign name="arrowright" size={36} color="#fff" />
+      <TouchableOpacity activeOpacity={1} style={styles.button} onPress={scrollTo}>
+        <AntDesign name="arrowright" size={24} color="#fff" />
       </TouchableOpacity>
     </View>
   );
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     
     justifyContent: "center",
     alignItems: "center",
-
+    
     
   },
   text: {
@@ -100,7 +100,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "#4b3e8e",
     borderRadius: 100,
-    padding: 5,
+    
+    width:56,
+    height:56,
+    flexDirection:"row",justifyContent: "center",alignItems: "center"
   },
 });
 

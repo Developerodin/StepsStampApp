@@ -164,7 +164,7 @@ export const AppSlides = () => {
          <View >
       <Text style={styles.title}>{activeSlide.title}</Text>
       <Text style={styles.title}>{activeSlide.title2}</Text>
-      <Text style={[styles.description,{marginTop:10}]}>{activeSlide.description}</Text>
+      <Text style={[styles.description,{marginTop:20}]}>{activeSlide.description}</Text>
       </View>
          </View>
         </View>
@@ -174,6 +174,7 @@ export const AppSlides = () => {
   <NextButton 
     scrollTo={scrollTo} 
     percentage={(currentIndex + 1) * (100 / slides.length)} 
+    
   />
 </View>
     
