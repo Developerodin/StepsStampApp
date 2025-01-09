@@ -65,7 +65,7 @@ export const Login = () => {
             </TouchableOpacity>
 
           {/* Title */}
-          <Text style={styles.title}>Please </Text>
+          <Text style={[styles.title ,{marginTop : 5}]}>Please </Text>
                        <Text style={[styles.title, { marginBottom: 0 }]}>confirm your</Text>
                        <Text style={[styles.title, { marginBottom: 10 }]}>identity</Text>
 
@@ -131,15 +131,16 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 0,
     textAlign: 'left',
+    letterSpacing: 1.5,
   },
   inputLabel: {
     color: '#3A3D46',
-    fontSize: 12,
+    fontSize: 14,
     marginBottom: 0,
     alignSelf: 'flex-start',
   },

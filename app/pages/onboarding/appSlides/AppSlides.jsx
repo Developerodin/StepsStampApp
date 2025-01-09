@@ -1,12 +1,12 @@
 import React,{useRef, useState , useEffect} from 'react';
-import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated, Button } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated, Button ,TouchableOpacity } from 'react-native';
 import NextButton  from './NextButton';
 import { StatusBar } from 'expo-status-bar';
 import Slide1 from '../../../assets/images/slide1.png';
 import Slide2 from '../../../assets/images/slide2.png';
 import Slide3 from '../../../assets/images/slide3.png';
 import { useNavigation } from "@react-navigation/native";
-import { Zocial } from '@expo/vector-icons';
+import { Ionicons, Zocial } from '@expo/vector-icons';
 
 const slides = [
   {
@@ -58,6 +58,18 @@ export const AppSlides = () => {
       // getDeviceDimensions()
     }
     };
+
+    const handleBack = () => {
+      if(currentIndex > 0){
+        slidesRef.current.scrollToIndex({index:currentIndex - 1});
+      } else {
+        console.log('First slide');
+      }
+    };
+
+    const handelSkip = () => {
+      navigation.navigate('Guide');
+      };
 
     const fadeAnim = useRef(new Animated.Value(0)).current; 
     useEffect(() => {
@@ -144,7 +156,25 @@ export const AppSlides = () => {
       </View>
         <View style={[{flex:1,position:"relative"}]}>
       <Animated.View style={{ opacity: fadeAnim }}>
-      <View style={{flex:0.8 }}>
+           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 20, marginTop: 40 }}>
+        {currentIndex > 0 && (
+          <TouchableOpacity onPress={handleBack} style={{ marginLeft: 20 }}>
+            <Image
+              source={require("../../../assets/icons/leftIcon.png")} // Replace with your logo path
+              style={{ width: 25, height: 25, resizeMode: "contain" }}
+            />
+          </TouchableOpacity>
+        )}
+        <View style={{ flex: 1 }} />
+        {(currentIndex === 0 || currentIndex === 1) && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 20 }}>
+            <TouchableOpacity onPress={handelSkip}>
+              <Text style={{ color: '#fff', fontSize: 18, marginLeft: 5 }}>Skip</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+      <View style={{flex:0.75 }}>
       <FlatList
       data={slides}
       renderItem={renderItem}

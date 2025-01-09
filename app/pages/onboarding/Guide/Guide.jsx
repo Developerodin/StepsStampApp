@@ -74,10 +74,10 @@ export const Guide = () => {
           <View style={{ marginTop: 30 }}>
             <Image
               source={require("../../../assets/images/Guide.png")} // Replace with your logo path
-              style={{ width: 395, height: 320, marginHorizontal: 0 }}
+              style={{ width: width * 1, height: height * 0.4, marginHorizontal: 0 }}
             />
           </View>
-          <View style={{ marginTop: 50 }}>
+          <View style={{ marginTop: 60 }}>
             <Text style={styles.centerText}>
               Invest your earned tokens in blockchain-powered{" "}
             </Text>
@@ -91,7 +91,7 @@ export const Guide = () => {
           </View>
 
           <View style={{ marginTop: 45 }}>
-            <TouchableOpacity style={styles.metamaskButton} onPress={handelSign}>
+            <TouchableOpacity style={styles.metamaskButton} onPress={handelSign} activeOpacity={0.8}>
               <Image
                 source={require("../../../assets/icons/LetGet.png")} // Replace with your Metamask logo path
                 style={styles.metamaskIcon}
@@ -140,17 +140,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
+    letterSpacing: 1.5,
+    
   },
   centerText: {
     color: "#fff",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
-
+    lineSpacing: 1,  
     alignSelf: "center",
   },
   metamaskButton: {

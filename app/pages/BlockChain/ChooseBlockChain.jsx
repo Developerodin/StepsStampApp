@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
@@ -62,17 +62,24 @@ export const ChooseBlockChain = () => {
       <View style={styles.content}>
         <Animated.View style={{ opacity: fadeAnim }}>
           {/* Logo */}
-          <View style={{ marginLeft: 20 }}>
-          <TouchableOpacity onPress={handelBack}>
-            <Image
-              source={require("../../assets/icons/leftIcon.png")} // Replace with your logo path
-              style={styles.logo}
-            />
-          </TouchableOpacity>
+          <View style={{ marginLeft: 0 }}>
+                 
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginLeft: 20 }}>
+            <TouchableOpacity onPress={handelBack}>
+              <Image
+                source={require("../../assets/icons/leftIcon.png")} // Replace with your logo path
+                style={styles.logo}
+              />
+            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Ionicons name="play-outline" size={24} color="#F78300" />
+              <Text style={{ color: '#F78300', fontSize: 12, marginLeft: 5 }}>Watch Video</Text>
+            </View>
+          </View>
 
 
-          <Text style={styles.title}>Choose Your</Text>
-          <Text style={[styles.title, { marginBottom: 0 }]}>Blockchain</Text>
+          <Text style={[styles.title ,{marginTop : 20}]}>Choose Your</Text>
+          <Text style={[styles.title, { marginBottom: 5 }]}>Blockchain</Text>
           </View>
 
           <ScrollView contentContainerStyle={styles.scrollViewContent} showsVerticalScrollIndicator={false}>
@@ -82,14 +89,14 @@ export const ChooseBlockChain = () => {
                 style={styles.infoImage}
               />
               <View style={styles.infoContent}>
-                <Text style={styles.infoText}>Mining Capacity: Earn 767 tokens daily, split 50% Pool A and 50% Pool B for all blockchain owners.</Text>
+                <Text style={styles.infoText}>Mine daily SSBTs based on the blockchain daily capacity,will split 50% Pool A and 50% Pool B for all blockchain owners.</Text>
               </View>
             </View>
 
             {/* Two Column Section */}
             <View style={styles.twoColumnCard}>
           <View style={styles.headerRow}>
-            <Text style={styles.headerText}>Phase B <Text style={{color: '#3A3D46'}}>(Current Active)</Text></Text>
+            <Text style={styles.headerText}>Phase B <Text style={{color: '#727272'}}>(Current Active)</Text></Text>
             <Text style={styles.headerLink}>Know More</Text>
           </View>
          
@@ -148,7 +155,7 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   content: {
-    marginTop: 60,
+    marginTop: 50,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
@@ -157,14 +164,17 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     resizeMode: "contain",
-    marginBottom: 20,
+    
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
+    letterSpacing: 1.5,
+    marginLeft: 20,
+    
   },
   scrollViewContent: {
     
@@ -191,14 +201,16 @@ const styles = StyleSheet.create({
   },
   infoText: {
     color: '#9C9EA3',
-    fontSize: 13,
+    fontSize: 10,
+    letterSpacing: 1,
+    lineHeight: 16,
   },
   twoColumnCard: {
     backgroundColor: 'transparent',
     marginTop: 20,
     borderRadius: 10,
     padding: 20,
-    borderColor: '#242731',
+    borderColor: '#727272',
     borderWidth: 1,
     paddingHorizontal: 20,
     flex: 1,
@@ -233,7 +245,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   columnText: {
-    color: '#3A3D46',
+    color: '#727272',
     fontSize: 12,
     marginBottom: 0,
   },

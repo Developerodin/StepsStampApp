@@ -71,7 +71,7 @@ export const NewUser = () => {
           <Text style={styles.title}>New user?</Text>
           <Text style={[styles.title, { marginBottom: 0 }]}>Sign Up</Text>
 
-          <View style={{ marginTop: 30 }}>
+          <View style={{ marginTop: 30  ,paddingRight: 10 }}>
 
           <Text style={styles.inputLabel}>FULL NAME</Text>
           <View
@@ -175,11 +175,12 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   content: {
-    marginTop: 50,
+    marginTop: 45,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
+    
     marginLeft: 0,
+    
   },
   logo: {
     width: 25,
@@ -188,17 +189,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
+    letterSpacing: 1.5,
   },
   inputLabel: {
     color: "#3A3D46",
     fontSize: 12,
     marginBottom: 0,
     alignSelf: "flex-start",
+    marginTop: 20,
   },
   inputContainer: {
     flexDirection: "row",
@@ -207,7 +210,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
-    width: "100%",
+    width: width * 0.80,
   },
   input: {
     flex: 1,

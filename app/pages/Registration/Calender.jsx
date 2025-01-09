@@ -117,11 +117,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
+    letterSpacing: 1.5,
   },
   inputLabel: {
     color: "#3A3D46",

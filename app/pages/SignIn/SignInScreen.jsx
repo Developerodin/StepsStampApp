@@ -51,8 +51,8 @@ export const SignInScreen = () => {
 
           {/* Title */}
           <Text style={styles.title}>What’s your </Text>
-                       <Text style={[styles.title, { marginBottom: 0 }]}>email</Text>
-                       <Text style={[styles.title, { marginBottom: 30 }]}>address?</Text>
+                       <Text style={[styles.title, { marginBottom: 0 }]}>email address?</Text>
+                       
 
 
           {/* Input Field */}
@@ -81,7 +81,7 @@ export const SignInScreen = () => {
           </TouchableOpacity>
 
           {/* Social Buttons */}
-          <TouchableOpacity style={styles.secondaryButton}>
+          <TouchableOpacity style={[styles.secondaryButton,{marginTop:15}]}>
             <FontAwesome name="facebook" size={20} color="#fff" />
             <Text style={styles.secondaryButtonText}>Sign Up With Facebook</Text>
           </TouchableOpacity>
@@ -97,10 +97,14 @@ export const SignInScreen = () => {
           </TouchableOpacity>
 
           {/* Divider */}
-          <Text style={styles.orText}>or</Text>
+                    <View style={styles.orContainer}>
+            <View style={styles.line} />
+            <Text style={styles.orText}>or</Text>
+            <View style={styles.line} />
+          </View>
 
           {/* Metamask Button */}
-          <View style={{marginTop: 5}}>
+          <View style={{marginTop: 0}}>
           <TouchableOpacity style={styles.metamaskButton}>
             <Image
               source={require('../../assets/icons/metamask-logo.png')} // Replace with your Metamask logo path
@@ -138,11 +142,11 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   content: {
-    flex: 1,
+    marginTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginLeft: 5,
+    marginLeft: 0,
   },
   logo: {
     width: 50,
@@ -152,17 +156,19 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 0,
     textAlign: 'left',
+    letterSpacing: 1.5,
   },
   inputLabel: {
     color: '#3A3D46',
-    fontSize: 10,
-    marginBottom: 5,
+    fontSize: 12,
+    marginBottom: 8,
     alignSelf: 'flex-start',
+    marginTop: 25,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -170,7 +176,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
     marginBottom: 20,
-    width: '100%',
+    width: width * 0.8,
   },
   input: {
     flex: 1,
@@ -178,6 +184,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
     fontWeight: '600',
+    marginVertical: 8
   },
   clearIcon: {
     marginLeft: 10,
@@ -221,17 +228,31 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   orText: {
-    color: '#3A3D46',
-    marginVertical: 15,
-    fontSize: 14,
-    alignSelf: 'center',
+    color: '#6F727A',
+   
+    fontSize: 15,
+    
     fontWeight: 'bold',
+    marginHorizontal: 10,
+    paddingBottom: 5,
+  },
+  orContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent : 'center',
+    marginVertical: 35,
+  },
+  line: {
+    flex: 1,
+    height: 1.5,
+    backgroundColor: '#282C38',
   },
   metamaskButton: {
     
     paddingVertical: 15,
     borderRadius: 10,
     width: width * 0.75,
+    height: height * 0.1,
     alignItems: 'center',
     alignSelf: 'center',
   },
