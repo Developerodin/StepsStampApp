@@ -1,37 +1,40 @@
 import React,{useRef, useState , useEffect} from 'react';
-import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet, Dimensions,Animated, Button } from 'react-native';
 import NextButton  from './NextButton';
 import { StatusBar } from 'expo-status-bar';
 import Slide1 from '../../../assets/images/slide1.png';
 import Slide2 from '../../../assets/images/slide2.png';
 import Slide3 from '../../../assets/images/slide3.png';
 import { useNavigation } from "@react-navigation/native";
+import { Zocial } from '@expo/vector-icons';
 
 const slides = [
   {
     id: 1,
-    title: 'Turn Every Step Into',
-    title2: 'Progress',
+    title: 'Turn Every Step Into Progress',
+    title2: '',
     description: 'Track your daily steps effortlessly with our advanced fitness tracker. Every move you make not only keeps you healthy but also powers your journey toward exciting rewards!"',
     image: Slide1,
   },
   {
     id: 2,
-    title: 'Fitness Meets Financial',
-    title2: 'Rewards',
+    title: 'Fitness Meets Financial Rewards',
+    title2: '',
     description: 'Convert your steps into valuable tokens effortlessly. Each step is a step closer to financial freedom. Start building wealth while achieving your fitness goals.',
     image: Slide2,
   },
   {
     id: 3,
-    title: 'Long Term Returns on Every',
-    title2: 'Step',
+    title: 'Long Term Returns on Every Step',
+    title2: '',
     description: 'Invest your earned tokens in blockchain-powered assets. Watch your rewards grow with healthy, sustainable returns while you stay motivated and active.',
     image: Slide3,
   },
 ];
 
 const { width,height } = Dimensions.get('window');
+
+const IMAGE_ASPECT_RATIO = 260 / (width * 0.9);
 
 export const AppSlides = () => {
   const navigation = useNavigation();
@@ -52,6 +55,7 @@ export const AppSlides = () => {
     }else{
       console.log('Last slide');
       navigation.navigate("Guide")
+      // getDeviceDimensions()
     }
     };
 
@@ -116,9 +120,16 @@ export const AppSlides = () => {
    console.log("Index active ==>",currentIndex)
   },[currentIndex])
 
+  const getDeviceDimensions = () => {
+     // or 'screen' for full screen dimensions
+    console.log( width, height );
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar translucent={true} backgroundColor="#181A20" style="light" />
+
+      
       <View style={styles.topLeftGradient}>
         <Image
           source={require("../../../assets/images/GradientTopLeft.png")}
@@ -153,23 +164,46 @@ export const AppSlides = () => {
 
     
     <View style={styles.cardBackgroundContainer}>
-          <Image
-            source={require('../../../assets/images/SlidesBg.png')} // Ensure path is correct for the card background
-            style={styles.cardBackgroundImage}
-          />
-         
-         <View style={{position:"absolute",top:20}}>
-         <Paginator data={slides} scrollX={scrollX} />
-         </View>
+  <Image
+    source={require('../../../assets/images/SlidesBg.png')} // Ensure path is correct for the card background
+    style={styles.cardBackgroundImage}
+    resizeMode="contain"
+  />
 
-         <View style={{position:"absolute",top:50,width:width*0.9}}>
-         <View >
+  {/* Centered section */}
+  <View
+    style={{
+      position: 'absolute',
+      width: width * 0.9,
+      // borderWidth: 1,
+      // borderColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center', // This centers the inner content vertically
+      height: '100%', // Takes the height of the parent container
+    }}
+  >
+    <View
+      style={{
+        // borderWidth: 1,
+        // borderColor: '#fff',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Text style={styles.title}>{activeSlide.title}</Text>
-      <Text style={styles.title}>{activeSlide.title2}</Text>
-      <Text style={[styles.description,{marginTop:20}]}>{activeSlide.description}</Text>
-      </View>
-         </View>
-        </View>
+      {/* <Text style={styles.title}>{activeSlide.title2}</Text> */}
+      <Text style={[styles.description, { marginTop: 20 }]}>
+        {activeSlide.description}
+      </Text>
+    </View>
+  </View>
+
+  {/* Paginator */}
+  <View style={{ position: 'absolute', top: 20 }}>
+    <Paginator data={slides} scrollX={scrollX} />
+  </View>
+</View>
         
 
         <View style={{ position: "absolute", bottom:32, left:0, right: 0, alignItems: "center",justifyContent:"center" }}>
@@ -227,7 +261,7 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 27,
+    fontSize: 26,
     fontWeight: '600',
     textAlign: 'center',
     
@@ -237,7 +271,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontWeight:'300',
-    fontSize: 13,
+    fontSize: 12,
     textAlign: 'center',
     color:"#FFFFFF",
     paddingHorizontal:24,
@@ -251,23 +285,21 @@ const styles = StyleSheet.create({
     
   },
   cardBackgroundContainer: {
- 
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-
-    position:"absolute",
-    bottom:60,
-    width:width
+    position: "absolute",
+    bottom: 60,
+    width: '100%',
+    height: height * 0.33,
+    // borderWidth:1,
+    // borderColor:'#ffff'
   },
   cardBackgroundImage: {
-
-    height:297,
-    width:width*0.9,
-    
-
-    
-    
-    
+    height: height * 0.33, // Dynamic height
+    width: width * 0.95,  // Dynamic width
+    resizeMode: 'contain', // Ensure proper scaling
+    // borderWidth:1,
+    // borderColor:'red'
   },
 });
