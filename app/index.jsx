@@ -14,6 +14,7 @@ import { ThemeData } from "./theme/Theme";
 import { Home } from "./pages/home/Home";
 import WelcomeScreen from "./pages/onboarding/splashScreen/WelcomeScreen";
 import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
 import { Profile } from "./pages/profile/Profile";
 import { AppProvider } from "./context/AppContext";
 import { AppSlides } from "./pages/onboarding/appSlides/AppSlides";
@@ -93,6 +94,10 @@ const Tabs = ({ navigation }) => {
 };
 export default function Index() {
   console.log("hii from index");
+  const [fontsLoaded, fontError] = Font.useFonts({
+    "Lexend": require("./assets/fonts/Lexend-Regular.ttf"),
+  });
+
   const [Auth, setAuth] = useState(null);
   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
   const [appIsReady, setAppIsReady] = useState(false);
@@ -146,7 +151,7 @@ export default function Index() {
     checkAuthAndFirstLaunch();
   }, []);
 
-  if (!appIsReady) {
+  if (!appIsReady && !fontsLoaded) {
     return <WelcomeScreen />;
   }
 
