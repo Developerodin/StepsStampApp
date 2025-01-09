@@ -118,11 +118,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: "bold",
+    fontWeight: "600",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
     letterSpacing: 1.5,
+    fontFamily: "Lexend",
   },
   inputLabel: {
     color: "#3A3D46",

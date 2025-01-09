@@ -169,7 +169,7 @@ export const AppSlides = () => {
         {(currentIndex === 0 || currentIndex === 1) && (
           <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 20 }}>
             <TouchableOpacity onPress={handelSkip}>
-              <Text style={{ color: '#fff', fontSize: 18, marginLeft: 5 }}>Skip</Text>
+              <Text style={{ color: '#fff', fontSize: 18, marginLeft: 5 ,fontFamily: "Lexend" }}>Skip</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -223,7 +223,7 @@ export const AppSlides = () => {
     >
       <Text style={styles.title}>{activeSlide.title}</Text>
       {/* <Text style={styles.title}>{activeSlide.title2}</Text> */}
-      <Text style={[styles.description, { marginTop: 20 }]}>
+      <Text style={[styles.description, { marginTop: 15 }]}>
         {activeSlide.description}
       </Text>
     </View>
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: '600',
     textAlign: 'center',
-    
+    fontFamily: "Lexend",
     color:"#ffff",
     textAlign:'center',
     letterSpacing:1
@@ -306,7 +306,8 @@ const styles = StyleSheet.create({
     color:"#FFFFFF",
     paddingHorizontal:24,
     lineHeight:20,
-    letterSpacing:1
+    letterSpacing:1,
+    fontFamily: "Lexend"
   },
   dot:{
     height:5,

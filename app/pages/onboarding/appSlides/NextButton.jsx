@@ -1,18 +1,13 @@
 import { AntDesign } from "@expo/vector-icons";
 import {
   View,
-  Text,
-  Button,
   StyleSheet,
-  Image,
   TouchableOpacity,
-  TextInput,
-  Dimensions,
-  ScrollView,
   Animated,
 } from "react-native";
 import Svg, { G, Circle } from "react-native-svg";
 import React, { useEffect, useRef } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const NextButton = ({ percentage, scrollTo }) => {
   const size = 59;
@@ -78,7 +73,14 @@ export const NextButton = ({ percentage, scrollTo }) => {
         </G>
       </Svg>
       <TouchableOpacity activeOpacity={1} style={styles.button} onPress={scrollTo}>
-        <AntDesign name="arrowright" size={24} color="#fff" />
+        <LinearGradient
+          colors={["#459CEC","#5C63D8", "#3B44B7"]}
+          start={{ x: 0.3, y: 0.2 }}
+          end={{ x: 0.7, y: 0.9}}
+          style={styles.gradient}
+        >
+          <AntDesign name="arrowright" size={24} color="#fff" />
+        </LinearGradient>
       </TouchableOpacity>
     </View>
   );
@@ -86,24 +88,21 @@ export const NextButton = ({ percentage, scrollTo }) => {
 
 const styles = StyleSheet.create({
   container: {
-    
     justifyContent: "center",
     alignItems: "center",
-    
-    
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
   },
   button: {
     position: "absolute",
-    backgroundColor: "#4b3e8e",
+    width: 56,
+    height: 56,
     borderRadius: 100,
-    
-    width:56,
-    height:56,
-    flexDirection:"row",justifyContent: "center",alignItems: "center"
+    overflow: "hidden", // Ensures the gradient stays within the button shape
+  },
+  gradient: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 100,
   },
 });
 

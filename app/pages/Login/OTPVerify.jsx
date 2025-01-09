@@ -66,8 +66,9 @@ export const OTPVerify = () => {
 
           {/* Title */}
           
-                       <Text style={[styles.title, { marginBottom: 0 }]}>OTP</Text>
-                       <Text style={[styles.title, { marginBottom: 10 }]}>verification</Text>
+                       <Text style={[styles.title, { marginBottom: 0 }]}>Please</Text>
+                       <Text style={[styles.title, { marginBottom: 0 }]}>confirm your</Text>
+                       <Text style={[styles.title, { marginBottom: 10 }]}>identity</Text>
 
 
           {/* Input Field */}
@@ -83,7 +84,7 @@ export const OTPVerify = () => {
       </Text>
           <TouchableOpacity style={styles.primaryButton} onPress={handelVerify}>
            
-            <Text style={styles.primaryButtonText}>VERIFY</Text>
+            <Text style={styles.primaryButtonText}>VERIFY & LOGIN</Text>
           </TouchableOpacity>
 
         
@@ -131,17 +132,20 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 32,
+    fontWeight: '600',
     color: '#fff',
     marginBottom: 0,
     textAlign: 'left',
+    letterSpacing: 1.5,
+    fontFamily: "Lexend",
   },
   inputLabel: {
     color: '#3A3D46',
     fontSize: 14,
     marginBottom: 0,
     alignSelf: 'flex-start',
+    fontFamily: "Lexend",
   },
   inputContainer: {
     flexDirection: 'row',
@@ -156,16 +160,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
     fontWeight: '600',
+    fontFamily: "Lexend",
   },
   resendText: {
     marginTop: 0,
     textAlign: 'flex-start',
     color: '#3A3D46',
     marginLeft: 10,
+    fontFamily: "Lexend",
   },
   resendLink: {
     color: '#35ABFF',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontFamily: "Lexend",
   },
  primaryButton: {
     flexDirection: 'row',
@@ -184,8 +191,9 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 14,
+    fontFamily: "Lexend",
   },
  
 });
