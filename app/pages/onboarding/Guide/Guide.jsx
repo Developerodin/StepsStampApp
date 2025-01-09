@@ -14,6 +14,8 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
+import GradientButton from "../../../components/Button/GradientButton";
+import { G } from "react-native-svg";
 
 export const Guide = () => {
   const navigation = useNavigation();
@@ -91,12 +93,9 @@ export const Guide = () => {
           </View>
 
           <View style={{ marginTop: 45 }}>
-            <TouchableOpacity style={styles.metamaskButton} onPress={handelSign} activeOpacity={0.8}>
-              <Image
-                source={require("../../../assets/icons/LetGet.png")} // Replace with your Metamask logo path
-                style={styles.metamaskIcon}
-              />
-            </TouchableOpacity>
+            <View style={styles.metamaskButton} >
+              <GradientButton  title="LET'S GET STARTED" onPress={handelSign} />
+            </View>
           </View>
         </Animated.View>
       </View>
@@ -141,25 +140,27 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: "bold",
+    fontWeight: "600",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
     letterSpacing: 1.5,
+    fontFamily: "Lexend"
     
   },
   centerText: {
     color: "#fff",
-    fontSize: 14,
+    fontSize: 12,
     textAlign: "center",
     lineSpacing: 1,  
     alignSelf: "center",
+    fontFamily: "Lexend",
   },
   metamaskButton: {
     paddingVertical: 15,
-    borderRadius: 10,
-    width: width * 0.75,
-    alignItems: "center",
+   
+    
+    
     alignSelf: "center",
   },
   metamaskIcon: {

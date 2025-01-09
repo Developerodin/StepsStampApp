@@ -132,17 +132,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#fff',
     marginBottom: 0,
     textAlign: 'left',
     letterSpacing: 1.5,
+    fontFamily: "Lexend",
   },
   inputLabel: {
     color: '#3A3D46',
     fontSize: 14,
     marginBottom: 0,
     alignSelf: 'flex-start',
+    fontFamily: "Lexend",
   },
   inputContainer: {
     flexDirection: 'row',
@@ -157,16 +159,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
     fontWeight: '600',
+    fontFamily: "Lexend",
   },
   resendText: {
     marginTop: 0,
     textAlign: 'flex-start',
     color: '#3A3D46',
     marginLeft: 10,
+    fontFamily: "Lexend",
   },
   resendLink: {
     color: '#35ABFF',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontFamily: "Lexend",
   },
  primaryButton: {
     flexDirection: 'row',
@@ -185,8 +190,9 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 14,
+    fontFamily: "Lexend",
   },
  
 });

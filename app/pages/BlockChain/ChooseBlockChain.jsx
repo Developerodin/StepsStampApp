@@ -73,12 +73,12 @@ export const ChooseBlockChain = () => {
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Ionicons name="play-outline" size={24} color="#F78300" />
-              <Text style={{ color: '#F78300', fontSize: 12, marginLeft: 5 }}>Watch Video</Text>
+              <Text style={{ color: '#F78300', fontSize: 12, marginLeft: 5 ,fontFamily: "Lexend" }}>Watch Video</Text>
             </View>
           </View>
 
 
-          <Text style={[styles.title ,{marginTop : 20}]}>Choose Your</Text>
+          <Text style={[styles.title ,{marginTop : 20}]}>Choose your</Text>
           <Text style={[styles.title, { marginBottom: 5 }]}>Blockchain</Text>
           </View>
 
@@ -168,12 +168,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: "bold",
+    fontWeight: "600",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
     letterSpacing: 1.5,
     marginLeft: 20,
+    fontFamily: "Lexend",
     
   },
   scrollViewContent: {
@@ -202,8 +203,9 @@ const styles = StyleSheet.create({
   infoText: {
     color: '#9C9EA3',
     fontSize: 10,
-    letterSpacing: 1,
+    
     lineHeight: 16,
+    fontFamily: "Lexend",
   },
   twoColumnCard: {
     backgroundColor: 'transparent',
@@ -223,12 +225,14 @@ const styles = StyleSheet.create({
   headerText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontFamily: "Lexend",
   },
   headerLink: {
     color: '#53BFFD',
     fontSize: 14,
     textDecorationLine: 'underline',
+    fontFamily: "Lexend",
   },
  
   columnsContainer: {
@@ -248,11 +252,13 @@ const styles = StyleSheet.create({
     color: '#727272',
     fontSize: 12,
     marginBottom: 0,
+    fontFamily: "Lexend",
   },
   columnValue: {
     color: '#FFFFFF',
     fontSize: 13,
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontFamily: "Lexend",
   },
   packageScroller: {
     paddingHorizontal: 10,
@@ -300,6 +306,7 @@ const styles = StyleSheet.create({
     color: '#246BFD',
     marginLeft: 10,
     fontSize: 12,
+    fontFamily: "Lexend",
   },
 });
 

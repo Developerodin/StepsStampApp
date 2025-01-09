@@ -190,11 +190,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: "bold",
+    fontWeight: "600",
     color: "#fff",
     marginBottom: 0,
     textAlign: "left",
     letterSpacing: 1.5,
+    fontFamily: "Lexend",
   },
   inputLabel: {
     color: "#3A3D46",
@@ -202,6 +203,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     alignSelf: "flex-start",
     marginTop: 20,
+    fontFamily: "Lexend",
   },
   inputContainer: {
     flexDirection: "row",
@@ -218,6 +220,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
     fontWeight: "600",
+    fontFamily: "Lexend",
   },
   resendText: {
     marginTop: 0,
@@ -248,6 +251,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "600",
     fontSize: 14,
+    fontFamily: "Lexend",
   },
 });
 

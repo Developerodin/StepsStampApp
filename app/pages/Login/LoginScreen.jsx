@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Animated, D
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import GradientButton from '../../components/Button/GradientButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -12,7 +13,7 @@ export const LoginScreen = () => {
     const [isFocused, setIsFocused] = useState(false);
 
     const handleForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
+    navigation.navigate('OTPVerify');
     };
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -56,9 +57,9 @@ export const LoginScreen = () => {
 
 
           {/* Input Field */}
-          <Text style={{color: '#3A3D46',
-    fontSize: 12,marginVertical: 10}}>Using <Text style={{color: "#fff",textDecorationLine: "underline"}}>hello@kijihub.com</Text> to login</Text>
-          <Text style={styles.inputLabel}>YOUR PASSWORD</Text>
+          {/* <Text style={{color: '#3A3D46',
+    fontSize: 12,marginVertical: 10}}>Using <Text style={{color: "#fff",textDecorationLine: "underline"}}>hello@kijihub.com</Text> to login</Text> */}
+          <Text style={styles.inputLabel}>YOUR EMAIL</Text>
           <View style={[styles.inputContainer, { borderBottomColor: isFocused ? '#F78300' : '#ccc' }]}>
   <TextInput
     style={styles.input}
@@ -69,24 +70,24 @@ export const LoginScreen = () => {
     onBlur={() => setIsFocused(false)}
   />
             <Ionicons
-              name="eye"
+              name="close-circle"
               size={20}
               color="#3A3D46"
               style={styles.clearIcon}
             />
           </View>
-          <TouchableOpacity onPress={handleForgotPassword}>
+          {/* <TouchableOpacity onPress={handleForgotPassword}>
           <Text style={{color: '#35ABFF',alignSelf: 'flex-end',marginBottom: 20,fontSize: 15}}>Forgot Password?</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           {/* Continue Button */}
-          <TouchableOpacity style={styles.primaryButton} >
+          <TouchableOpacity style={styles.primaryButton} onPress={handleForgotPassword} >
             
-            <Text style={styles.primaryButtonText}>LOGIN</Text>
+            <Text style={styles.primaryButtonText}>CONTINUE</Text>
           </TouchableOpacity>
 
           {/* Social Buttons */}
-          <TouchableOpacity style={styles.secondaryButton}>
+          <TouchableOpacity style={[styles.secondaryButton ,{marginTop:15}]}>
             <FontAwesome name="facebook" size={20} color="#fff" />
             <Text style={styles.secondaryButtonText}>Sign Up With Facebook</Text>
           </TouchableOpacity>
@@ -102,6 +103,18 @@ export const LoginScreen = () => {
           </TouchableOpacity>
 
           {/* Divider */}
+          <View style={styles.orContainer}>
+            <View style={styles.line} />
+            <Text style={styles.orText}>or</Text>
+            <View style={styles.line} />
+          </View>
+
+          {/* Metamask Button */}
+          <View style={{marginTop: 0}}>
+          <View style={styles.metamaskButton}>
+           <GradientButton title="CONNECT METAMASK WALLET" icon={require('../../assets/icons/metamask.png')}  />
+          </View>
+          </View>
           
         </Animated.View>
       </View>
@@ -147,11 +160,13 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 32,
+    fontWeight: '600',
     color: '#fff',
     marginBottom: 0,
     textAlign: 'left',
+    fontFamily: "Lexend",
+    letterSpacing: 1.5,
   },
   inputLabel: {
     color: '#3A3D46',
@@ -159,6 +174,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     alignSelf: 'flex-start',
     marginTop: 30,
+    fontFamily: "Lexend",
   },
   inputContainer: {
     flexDirection: 'row',
@@ -174,6 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
     fontWeight: '600',
+    fontFamily: "Lexend",
   },
   clearIcon: {
     marginLeft: 10,
@@ -188,15 +205,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: width * 0.75,
     alignSelf: 'center', 
-    marginTop: 10,
+    
+    marginVertical: 20,
+
   },
   buttonIcon: {
     marginRight: 10,
   },
   primaryButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 14,
+    fontFamily: "Lexend",
   },
   secondaryButton: {
     flexDirection: 'row',
@@ -215,19 +235,35 @@ const styles = StyleSheet.create({
     color: '#B3CEE2',
     marginLeft: 10,
     fontSize: 12,
+    fontFamily: "Lexend",
   },
   orText: {
-    color: '#3A3D46',
-    marginVertical: 15,
-    fontSize: 14,
-    alignSelf: 'center',
-    fontWeight: 'bold',
+    color: '#6F727A',
+   
+    fontSize: 15,
+    
+    fontWeight: '600',
+    marginHorizontal: 10,
+    paddingBottom: 5,
+    fontFamily: "Lexend",
+  },
+  orContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent : 'center',
+    marginVertical: 35,
+  },
+  line: {
+    flex: 1,
+    height: 1.5,
+    backgroundColor: '#282C38',
   },
   metamaskButton: {
     
     paddingVertical: 15,
     borderRadius: 10,
     width: width * 0.75,
+    height: height * 0.1,
     alignItems: 'center',
     alignSelf: 'center',
   },

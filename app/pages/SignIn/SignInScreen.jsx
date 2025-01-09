@@ -3,6 +3,8 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Animated, D
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { G } from 'react-native-svg';
+import GradientButton from '../../components/Button/GradientButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -105,12 +107,9 @@ export const SignInScreen = () => {
 
           {/* Metamask Button */}
           <View style={{marginTop: 0}}>
-          <TouchableOpacity style={styles.metamaskButton}>
-            <Image
-              source={require('../../assets/icons/metamask-logo.png')} // Replace with your Metamask logo path
-              style={styles.metamaskIcon}
-            />
-          </TouchableOpacity>
+          <View style={styles.metamaskButton}>
+           <GradientButton title="CONNECT METAMASK WALLET" icon={require('../../assets/icons/metamask.png')}  />
+          </View>
           </View>
         </Animated.View>
       </View>
@@ -157,11 +156,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#fff',
     marginBottom: 0,
     textAlign: 'left',
     letterSpacing: 1.5,
+    fontFamily: "Lexend",
   },
   inputLabel: {
     color: '#3A3D46',
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     alignSelf: 'flex-start',
     marginTop: 25,
+    fontFamily: "Lexend",
   },
   inputContainer: {
     flexDirection: 'row',
@@ -184,7 +185,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
     fontWeight: '600',
-    marginVertical: 8
+    marginVertical: 8,
+    fontFamily: "Lexend",
   },
   clearIcon: {
     marginLeft: 10,
@@ -206,8 +208,9 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 14,
+    fontFamily: "Lexend",
   },
   secondaryButton: {
     flexDirection: 'row',
@@ -226,15 +229,17 @@ const styles = StyleSheet.create({
     color: '#B3CEE2',
     marginLeft: 10,
     fontSize: 12,
+    fontFamily: "Lexend",
   },
   orText: {
     color: '#6F727A',
    
     fontSize: 15,
     
-    fontWeight: 'bold',
+    fontWeight: '600',
     marginHorizontal: 10,
     paddingBottom: 5,
+    fontFamily: "Lexend",
   },
   orContainer: {
     flexDirection: 'row',
