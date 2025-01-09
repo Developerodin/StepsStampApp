@@ -28,6 +28,7 @@ import {LoginScreen} from "./pages/Login/LoginScreen";
 import {ForgotPassword} from "./pages/Login/ForgotPassword";
 import {OTPVerify }from "./pages/Login/OTPVerify";
 import {ChangePassword} from "./pages/Login/ChangePassword";
+import { Home2 } from "./pages/home/Home2";
 
 
 const Stack = createNativeStackNavigator();
@@ -163,8 +164,8 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "AppSlides"
-          //  Auth ? "Tabs" : "Login"
+            "Graph Componnet"
+          //  Auth ? "Tabs" : "AppSlides"
           }
         >
        <Stack.Screen
@@ -180,6 +181,14 @@ export default function Index() {
             component={AppSlides}
             options={{
               headerShown: false,
+            }}
+          />
+
+<Stack.Screen
+            name="Graph Componnet"
+            component={Home2}
+            options={{
+              headerShown: true,
             }}
           />
 <Stack.Screen
