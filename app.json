@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.developerodin.StepsStamp"
     },
     "web": {
       "bundler": "metro",
@@ -24,10 +25,18 @@
     },
     "plugins": [
       "expo-router",
-       "expo-font"
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4a4fb3f8-b16c-4eff-8425-569df02bf457"
+      }
     }
   }
 }

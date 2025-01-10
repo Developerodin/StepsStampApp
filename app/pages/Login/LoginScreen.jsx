@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import GradientButton from '../../components/Button/GradientButton';
-
+import { MetaMaskModelConnect } from '../../components/MetaMaskModel/MetaMaskModelConnect'
 const { width, height } = Dimensions.get('window');
 
 export const LoginScreen = () => {
@@ -15,6 +15,12 @@ export const LoginScreen = () => {
     const handleForgotPassword = () => {
     navigation.navigate('OTPVerify');
     };
+    
+    const handelMetaMaskConnectPress = () =>{
+
+    }
+
+
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1, // Final opacity value of 1
@@ -112,7 +118,8 @@ export const LoginScreen = () => {
           {/* Metamask Button */}
           <View style={{marginTop: 0}}>
           <View style={styles.metamaskButton}>
-           <GradientButton title="CONNECT METAMASK WALLET" icon={require('../../assets/icons/metamask.png')}  />
+           {/* <GradientButton onPress={handelMetaMaskConnectPress} title="CONNECT METAMASK WALLET" icon={require('../../assets/icons/metamask.png')}  /> */}
+           <MetaMaskModelConnect />
           </View>
           </View>
           

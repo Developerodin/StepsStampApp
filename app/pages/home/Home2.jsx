@@ -3,6 +3,7 @@ import { View,Text, StyleSheet, ScrollView, Image } from 'react-native'
 import WalkModeStepCountProgressBar from '../../components/graphs/WalkModeStepCountProgressBar'
 import RewardModeStepCountProgressBar from '../../components/graphs/RewardModeStepCountProgressBar'
 import SmallProgressBar from '../../components/graphs/SmallProgressBar'
+import { MetaMaskModelConnect } from '../../components/MetaMaskModel/MetaMaskModelConnect'
 
 export const Home2 = () => {
   return (
@@ -30,6 +31,11 @@ export const Home2 = () => {
                   resizeMode="contain"
                 style={{width:40,height:40}}
                 />}/>
+      </View>
+
+
+      <View style={{flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <MetaMaskModelConnect />
       </View>
 
         </View>

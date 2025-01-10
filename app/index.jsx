@@ -164,7 +164,7 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "Graph Componnet"
+            "LoginScreen"
           //  Auth ? "Tabs" : "AppSlides"
           }
         >
