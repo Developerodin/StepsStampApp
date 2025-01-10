@@ -33,13 +33,9 @@ const styles = StyleSheet.create({
   card: {
     width: '90%',
     height: 150,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     borderRadius: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 5 },
-    elevation: 5,
+    
     overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
