@@ -23,7 +23,7 @@ export const NextButton = () => {
   const navigation = useNavigation();
    
   const handelScrollTo = () => {
-    navigation.navigate("Wallet");
+    navigation.navigate("DSS-Bank");
     };
 
   const animation = (toValue) => {

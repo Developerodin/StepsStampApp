@@ -179,7 +179,7 @@ export const Profile = () => {
     </View>
     <Text style={{ color: "#fff", fontSize: 16, fontFamily: "Lexend", fontWeight: "600", alignSelf: "flex-start", marginTop: 20, marginLeft: 20 }}>Watches You Owned</Text>
                   <View style={{  alignItems: "center", marginTop: 10  }}>
-                    <Image source={require('../../assets/images/GreenWatch.png')} style={{ width: 350, height: 210  }} />
+                    <Image source={require('../../assets/images/GreenWatch.png')} style={{ width: width * 0.9, height: height * 0.26 }} />
     
                   </View>
            
