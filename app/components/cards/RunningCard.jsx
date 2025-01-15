@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   description: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#fff',
     fontWeight: '600',
     fontFamily: 'Lexend',

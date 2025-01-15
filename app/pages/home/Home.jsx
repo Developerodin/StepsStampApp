@@ -178,7 +178,7 @@ export const Home = () => {
               </View>
             </>
           ) : (
-            <ScrollView style={{ flex: 1,marginBottom:40 }}>
+            <ScrollView style={{ flex: 1,marginBottom:80 }}>
                 <LinearGradient
       colors={['#E42A6C', '#C393FF']}
       start={{ x: 0, y: 0 }}

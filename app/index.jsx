@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View ,Image } from "react-native";
 import { useCallback, useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -39,19 +39,20 @@ const Tabs = ({ navigation }) => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: ThemeData.color,
-        tabBarInactiveTintColor: ThemeData.activeColor,
-        // tabBarLabelStyle: { color: "#fff" },
+        tabBarActiveTintColor: "#F78300",
+        tabBarInactiveTintColor: "#BCBEC1",
+        tabBarLabelStyle: { fontSize: 12, fontFamily: "Lexend",fontWeight: "600" },
         tabBarStyle: {
           backgroundColor: ThemeData.backgroundColor,
           
           position: "absolute",
           bottom: 0,
-          paddingTop: 10,
-          paddingBottom: 10,
-          height: 64,
-          borderTopRightRadius: 30,
-          borderTopLeftRadius: 30,
+          paddingTop: 5,
+          paddingBottom: 20,
+          height: 75,
+          borderTopColor: "#000",
+          borderTopWidth: 0,
+         
         },
       }}
     >
@@ -60,24 +61,66 @@ const Tabs = ({ navigation }) => {
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="bookmark" size={size} color={color} />
-            // <Image
-            //   source={require('./assets/media/home_1.png')} 
-            //   style={{ width: 25, height: 25, tintColor: color }}
-            // />
+            
+            <Image
+              source={require('./assets/icons/Home.png')} 
+              style={{ width: 24, height: 24, tintColor: color }}
+            />
           ),
-          headerShown: true,
+          headerShown: false,
         }}
       />
    
    <Tab.Screen
+        name="DSS Bank"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('./assets/icons/BankTab.png')} 
+              style={{ width: 24, height: 24, tintColor: color }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+       <Tab.Screen
+        name="Wallet"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('./assets/icons/WalletTab.png')} 
+              style={{ width: 24, height: 24, tintColor: color }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+       <Tab.Screen
+        name="Reward"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('./assets/icons/RewardTab.png')} 
+              style={{ width: 24, height: 24, tintColor: color }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+       <Tab.Screen
         name="Profile"
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="bookmark" size={size} color={color} />
+            <Image
+            source={require('./assets/icons/ProfileTab.png')} 
+            style={{ width: 24, height: 24, tintColor: color }}
+          />
           ),
-          headerShown: true,
+          headerShown: false,
         }}
       />
 
@@ -262,13 +305,13 @@ export default function Index() {
               headerShown: false,
             }}
           />
-         <Stack.Screen
+         {/* <Stack.Screen
             name="Home"
             component={Home}
             options={{
               headerShown: false,
             }}
-          />
+          /> */}
            
 
         </Stack.Navigator>
