@@ -17,6 +17,7 @@ import RewardModeStepCountProgressBar from '../../components/graphs/RewardModeSt
 import RunningCard from '../../components/cards/RunningCard'
 import { LinearGradient } from 'expo-linear-gradient';
 import TabComponent from "../../components/cards/TabComponent";
+import SmallProgressBar2 from "../../components/graphs/SmallProgressBar2";
 
 
 const { width, height } = Dimensions.get("window");
@@ -134,14 +135,14 @@ export const Home = () => {
               <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 30, marginTop: 40 }}>
                 <View style={{ alignItems: "center" }}>
                   <SmallProgressBar
-                    size={100}
+                    size={80}
                     percentage={40}
                     duration={1000}
                     image={
                       <Image
                         source={require(`../../assets/icons/fire.png`)}
                         resizeMode="contain"
-                        style={{ width: 40, height: 40 }}
+                        style={{ width: 30, height: 30 }}
                       />
                     }
                   />
@@ -149,14 +150,14 @@ export const Home = () => {
                 </View>
                 <View style={{ alignItems: "center" }}>
                   <SmallProgressBar
-                    size={100}
+                    size={80}
                     percentage={40}
                     duration={1000}
                     image={
                       <Image
                         source={require(`../../assets/icons/location.png`)}
                         resizeMode="contain"
-                        style={{ width: 40, height: 40 }}
+                        style={{ width: 30, height: 30 }}
                       />
                     }
                   />
@@ -164,21 +165,21 @@ export const Home = () => {
                 </View>
                 <View style={{ alignItems: "center" }}>
                   <SmallProgressBar
-                    size={100}
+                    size={80}
                     percentage={40}
                     duration={1000}
                     image={
                       <Image
                         source={require(`../../assets/icons/time.png`)}
                         resizeMode="contain"
-                        style={{ width: 40, height: 40 }}
+                        style={{ width: 30, height: 30 }}
                       />
                     }
                   />
                   <Text style={{ color: "#fff", fontSize: 16, fontFamily: "Lexend", fontWeight: "600" }}>5.5 hrs</Text>
                 </View>
               </View>
-              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 40 }}>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 20 }}>
                 <TabComponent />
               </View>
               </ScrollView>
@@ -231,7 +232,7 @@ export const Home = () => {
                   <Text style={styles.subtitle}>Complete 1500 steps to join Pool A</Text>
                 </View>
                 <View style={styles.progressBarContainer}>
-                  <SmallProgressBar
+                  <SmallProgressBar2
                     size={80}
                     percentage={40}
                     duration={1000}
@@ -257,7 +258,7 @@ export const Home = () => {
                     duration={1000}
                     image={
                       <Image
-                        source={require('../../assets/icons/goalsO.png')}
+                        source={require('../../assets/icons/goalsB.png')}
                         resizeMode="contain"
                         style={{ width: 32, height: 32 }}
                       />
@@ -267,9 +268,9 @@ export const Home = () => {
               </View>
               <Text style={{ color: "#fff", fontSize: 16, fontFamily: "Lexend", fontWeight: "600", alignSelf: "flex-start", marginTop: 20, paddingLeft: 16 }}>We have something for you!</Text>
               <View style={{  alignItems: "center", marginTop: 20  }}>
-                <Image source={require('../../assets/images/SilverWatch.png')} style={{ width: 350, height: 210 }} />
-                <Image source={require('../../assets/images/GoldWatch.png')} style={{ width: 350, height: 210 ,marginTop:15 }} />
-                <Image source={require('../../assets/images/GreenWatch.png')} style={{ width: 350, height: 210 ,marginTop:15 }} />
+                <Image source={require('../../assets/images/SilverWatch.png')} style={{ width: width * 0.9, height: height * 0.26}} />
+                <Image source={require('../../assets/images/GoldWatch.png')} style={{ width: width * 0.9, height: height * 0.26,marginTop:15 }} />
+                <Image source={require('../../assets/images/GreenWatch.png')} style={{ width: width * 0.9, height: height * 0.26 ,marginTop:15 }} />
 
               </View>
             </ScrollView>

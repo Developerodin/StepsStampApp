@@ -32,6 +32,7 @@ import {ForgotPassword} from "./pages/Login/ForgotPassword";
 import {OTPVerify }from "./pages/Login/OTPVerify";
 import {ChangePassword} from "./pages/Login/ChangePassword";
 import { Home2 } from "./pages/home/Home2";
+import {DSSBank} from "./pages/DSS Bank/DSSBank";
 
 
 const Stack = createNativeStackNavigator();
@@ -315,6 +316,15 @@ export default function Index() {
               headerShown: false,
             }}
           /> */}
+
+<Stack.Screen
+            name="DSS-Bank"
+            component={DSSBank}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
            
 
         </Stack.Navigator>

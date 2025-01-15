@@ -80,7 +80,7 @@ export const Rewards = () => {
               />
             </View>
           </View>
-          <ScrollView style={{ flex: 1 ,marginBottom:60}}>
+          <ScrollView style={{ flex: 1 ,marginBottom:80}}>
           <View style={{flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
