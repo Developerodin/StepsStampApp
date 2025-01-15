@@ -68,7 +68,7 @@ export const AppSlides = () => {
     };
 
     const handelSkip = () => {
-      navigation.navigate('Guide');
+      navigation.navigate('Home');
       };
 
     const fadeAnim = useRef(new Animated.Value(0)).current; 

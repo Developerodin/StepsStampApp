@@ -13,6 +13,9 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 import RunningCard from "../../components/cards/RunningCard";
+import WalkModeStepCountProgressBar from '../../components/graphs/WalkModeStepCountProgressBar'
+import RewardModeStepCountProgressBar from '../../components/graphs/RewardModeStepCountProgressBar'
+import SmallProgressBar from '../../components/graphs/SmallProgressBar'
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -105,8 +108,10 @@ export const Home = () => {
               </Text>
             </TouchableOpacity>
           </View>
-
-          <RunningCard />
+          <View style={{flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:40}}>
+      <WalkModeStepCountProgressBar percentage={40} duration={1000}/>
+      </View>
+          
         </Animated.View>
       </View>
     </View>
