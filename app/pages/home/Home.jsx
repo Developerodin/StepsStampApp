@@ -16,6 +16,7 @@ import SmallProgressBar from '../../components/graphs/SmallProgressBar';
 import RewardModeStepCountProgressBar from '../../components/graphs/RewardModeStepCountProgressBar'
 import RunningCard from '../../components/cards/RunningCard'
 import { LinearGradient } from 'expo-linear-gradient';
+import TabComponent from "../../components/cards/TabComponent";
 
 
 const { width, height } = Dimensions.get("window");
@@ -115,6 +116,7 @@ export const Home = () => {
           {/* Conditional Content */}
           {activeTab === "Walk Mode" ? (
             <>
+            <ScrollView style={{ flex: 1,marginBottom:80 }}>
               <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 40, position: "relative" }}>
                 <WalkModeStepCountProgressBar percentage={25} duration={1000} />
                 <View style={{ position: "absolute", top: "50%", left: "50%", transform: [{ translateX: '-50%' }, { translateY: '-50%' }], alignItems: "center" }}>
@@ -176,6 +178,10 @@ export const Home = () => {
                   <Text style={{ color: "#fff", fontSize: 16, fontFamily: "Lexend", fontWeight: "600" }}>5.5 hrs</Text>
                 </View>
               </View>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 40 }}>
+                <TabComponent />
+              </View>
+              </ScrollView>
             </>
           ) : (
             <ScrollView style={{ flex: 1,marginBottom:80 }}>
@@ -191,7 +197,7 @@ export const Home = () => {
           source={require('../../assets/icons/mining-icon.png')} // Replace with your mining icon path
           style={styles.icon}
         />
-        <View style={styles.textContainer}>
+        <View style={styles.cardTextContainer}>
           <Text style={styles.cardTitle}>Activate Mining</Text>
           <Text style={styles.cardSubtitle}>Start mining your first blockchain.</Text>
         </View>
@@ -378,18 +384,18 @@ const styles = StyleSheet.create({
     height: 40,
     marginRight: 12,
   },
-  textContainer: {
+  cardTextContainer: {
     flexDirection: 'column',
   },
   cardTitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#FFFFFF',
     fontWeight: '600',
     marginBottom: 4,
     fontFamily: 'Lexend',
   },
   cardSubtitle: {
-    fontSize: 13,
+    fontSize: 11,
     color: '#B5B5BE',
     fontFamily: 'Lexend',
   },
@@ -397,12 +403,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#53BFFD',
     borderRadius: 20,
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
   },
   activateButtonText: {
     color: '#246BFD',
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: 13,
   },
 
 });

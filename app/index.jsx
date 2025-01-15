@@ -12,6 +12,9 @@ import {
 } from "@react-navigation/native";
 import { ThemeData } from "./theme/Theme";
 import { Home } from "./pages/home/Home";
+import { Wallet }from "./pages/Wallet/Wallet";
+import { Rewards } from "./pages/Rewards & Referrals/Rewards";
+import { Bank } from "./pages/DSS Bank/Bank";
 import WelcomeScreen from "./pages/onboarding/splashScreen/WelcomeScreen";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
@@ -73,7 +76,7 @@ const Tabs = ({ navigation }) => {
    
    <Tab.Screen
         name="DSS Bank"
-        component={Profile}
+        component={Bank}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -86,7 +89,7 @@ const Tabs = ({ navigation }) => {
       />
        <Tab.Screen
         name="Wallet"
-        component={Profile}
+        component={Wallet}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -99,7 +102,7 @@ const Tabs = ({ navigation }) => {
       />
        <Tab.Screen
         name="Reward"
-        component={Profile}
+        component={Rewards}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
