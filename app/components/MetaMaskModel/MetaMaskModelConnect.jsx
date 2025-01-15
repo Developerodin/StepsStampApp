@@ -45,13 +45,15 @@ export const  MetaMaskModelConnect=() => {
 				<Text>{isConnected ? 'Disconnect' : 'Connect'}</Text>
 			</Pressable> */}
 
-<GradientButton onPress={handleButtonPress} title="CONNECT METAMASK WALLET" icon={require('../../assets/icons/metamask.png')}  />
+<GradientButton
+				onPress={handleButtonPress}
+				title={isConnected ? 'DISCONNECT WALLET' : 'CONNECT WALLET'}
+				icon={require('../../assets/icons/metamask.png')}
+			/>
 
 			<WalletConnectModal
-				explorerRecommendedWalletIds={[
-					'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96',
-				]}
-				explorerExcludedWalletIds={'ALL'}
+				explorerRecommendedWalletIds={['ALL']}
+				// explorerExcludedWalletIds={[]}
 				projectId={projectId}
 				providerMetadata={providerMetadata}
 			/>
