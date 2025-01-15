@@ -4,16 +4,14 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 const RunningCard = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <Image
+       <Image
           source={require('../../assets/images/running.png')} // Update with your actual path
           style={styles.runningMan}
         />
+      <View style={styles.card}>
+       
         <View style={styles.content}>
-          <Image
-            source={require('../../assets/images/bitcoin.png')} // Update with your actual path
-            style={styles.bitcoinIcon}
-          />
+          
           <Text style={styles.description}>
             Every step matters—track your progress and keep moving forward!
           </Text>
@@ -28,11 +26,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    position: 'relative',
+    
   },
   card: {
     width: '90%',
-    height: 150,
+    height: 70,
     backgroundColor: 'transparent',
     borderRadius: 10,
     
@@ -40,20 +39,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
+    borderColor: '#262A34',
+    borderWidth: 1,
   },
   runningMan: {
-    width: 100,
-    height: 100,
+    width: 147,
+    height: 140,
     position: 'absolute',
-    top: -30,
-    left: -20,
+    top: -60,
+    left: 10,
     resizeMode: 'contain',
+    zIndex: 1,
   },
   content: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 80, // Adjust for running man overlap
+    alignItems: 'flex-end',
+    marginLeft: 100, 
   },
   bitcoinIcon: {
     width: 30,
@@ -63,9 +65,10 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    color: '#333',
+    color: '#fff',
     fontWeight: '600',
-    flexShrink: 1,
+    fontFamily: 'Lexend',
+    
   },
 });
 

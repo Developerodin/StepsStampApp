@@ -164,7 +164,7 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "LoginScreen"
+            "AppSlides"
           //  Auth ? "Tabs" : "AppSlides"
           }
         >
@@ -262,6 +262,14 @@ export default function Index() {
               headerShown: false,
             }}
           />
+         <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerShown: false,
+            }}
+          />
+           
 
         </Stack.Navigator>
 
