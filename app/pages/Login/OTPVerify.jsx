@@ -18,7 +18,7 @@ export const OTPVerify = () => {
     const [otp, setOtp] = useState('');
 
     const handelVerify = () => {
-        navigation.navigate('ChangePassword');
+        navigation.navigate('Tabs');
     };
 
     const handleOTPChange = (otpValue) => {
