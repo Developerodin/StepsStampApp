@@ -8,13 +8,14 @@ import {
   Image,
   Animated,
   Dimensions,
+  FlatList
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import CustomCalendar from "../../components/Calender/CustomCalendar";
 
-
+const centerItemHeight = 70;
 const { width, height } = Dimensions.get("window");
 
 export const Calender = () => {
@@ -36,6 +37,82 @@ export const Calender = () => {
       useNativeDriver: true,
     }).start();
   }, [fadeAnim]);
+
+
+  const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1;
+    const currentDay = new Date().getDate();
+  
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(null);
+    const [selectedYear, setSelectedYear] = useState(null);
+  
+    
+
+    const handelSave =()=>{
+      console.log("Selcted ==>",selectedDay,selectedMonth,selectedYear);
+      navigation.navigate("ChooseBlockChain")
+    }
+     // Height for each item in FlatList
+  
+     const days = Array.from({ length: 100 }, (_, i) => (i % 31) + 1);
+     const months = Array.from({ length: 100 }, (_, i) => (i % 12) + 1); // Loop through 1 to 12 repeatedly until the length is 100
+    const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
+  
+    const daysLoop = [...days]; // Duplicate days for looping
+    const monthsLoop = [...months]; // Duplicate months for looping
+    
+    const daysRef = useRef(null);
+    const monthsRef = useRef(null);
+    const yearsRef = useRef(null);
+  
+    useEffect(() => {
+      // Center the lists at the middle when the component loads
+      setTimeout(() => {
+        daysRef.current.scrollToOffset({
+          offset: centerItemHeight * days.length,
+          animated: false,
+        });
+        monthsRef.current.scrollToOffset({
+          offset: centerItemHeight * months.length,
+          animated: false,
+        });
+      },10);
+    }, []);
+  
+    const handleScroll = (e, data, setSelected, flatListRef, loopData) => {
+      const offsetY = e.nativeEvent.contentOffset.y;
+      const adjustedOffsetY = offsetY + height * 0.1 - centerItemHeight / 2; // Adjust based on centerLine position
+      const index = Math.round(adjustedOffsetY / centerItemHeight);
+      const totalItems = data.length;
+      const middleIndex = Math.floor(loopData.length / 2);
+    
+      // Get the actual value from the data array
+      const actualIndex = index % totalItems;
+      const selectedValue = data[actualIndex >= 0 ? actualIndex : totalItems + actualIndex];
+       console.log("Selected ===>", selectedValue)
+      setSelected(selectedValue);
+    
+      // Reset the scroll to keep it in the loop's center
+      if (index < middleIndex - totalItems / 2 || index > middleIndex + totalItems / 2) {
+        flatListRef.current.scrollToOffset({
+          offset: centerItemHeight * (middleIndex + actualIndex - totalItems / 2),
+          animated: false,
+        });
+      }
+    };
+    
+  
+    const renderItem = (item, selected) => {
+      const isSelected = item === selected;
+      return (
+        <View style={styles.itemContainer}>
+          <Text style={[styles.itemText, isSelected && styles.selectedText]}>
+            {item < 10 ? `0${item}` : item}
+          </Text>
+        </View>
+      );
+    };
 
   return (
     <View style={styles.container}>
@@ -72,9 +149,72 @@ export const Calender = () => {
 
           <View style={{ marginTop: 30 }}>
 
-            <CustomCalendar onDateChange={handleDateChange} />
+            {/* Date Picker Container */}
+                  <View style={styles.pickerContainer}>
+                    {/* Days */}
+                    <View style={styles.pickerColumn}>
+                      <FlatList
+                        data={daysLoop}
+                        keyExtractor={(item, index) => `${item}-${index}`}
+                        renderItem={({ item }) => renderItem(item, selectedDay)}
+                        onMomentumScrollEnd={(e) =>
+                          handleScroll(e, days, setSelectedDay, daysRef, daysLoop)
+                        }
+                        ref={daysRef}
+                        showsVerticalScrollIndicator={false}
+                        snapToInterval={centerItemHeight}
+                        decelerationRate="fast"
+                        contentContainerStyle={styles.listContainer}
+                      />
+                    </View>
+            
+                    {/* Months */}
+                    <View style={styles.pickerColumn}>
+                      <FlatList
+                        data={monthsLoop}
+                        keyExtractor={(item, index) => `${item}-${index}`}
+                        renderItem={({ item }) => renderItem(item, selectedMonth)}
+                        onMomentumScrollEnd={(e) =>
+                          handleScroll(e, months, setSelectedMonth, monthsRef, monthsLoop)
+                        }
+                        ref={monthsRef}
+                        showsVerticalScrollIndicator={false}
+                        snapToInterval={centerItemHeight}
+                        decelerationRate="fast"
+                        contentContainerStyle={styles.listContainer}
+                      />
+                    </View>
+            
+                    {/* Years */}
+                    <View style={styles.pickerColumn}>
+                      <FlatList
+                        data={years}
+                        keyExtractor={(item) => item.toString()}
+                        renderItem={({ item }) => renderItem(item, selectedYear)}
+                        onMomentumScrollEnd={(e) =>
+                          handleScroll(e, years, setSelectedYear, yearsRef, years)
+                        }
+                        ref={yearsRef}
+                        showsVerticalScrollIndicator={false}
+                        snapToInterval={centerItemHeight}
+                        decelerationRate="fast"
+                        contentContainerStyle={styles.listContainer}
+                      />
+                    </View>
+            
+                    {/* Center Lines */}
+                    <View style={styles.centerLineTop} />
+                    <View style={styles.centerLineBottom} />
+                  </View>
+            
+                  {/* Save Button */}
+                  
           </View>
-
+          <View style={{marginTop:20,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+          <TouchableOpacity onPress={handelSave} style={styles.saveButton}>
+                    <Text style={styles.saveButtonText}>SAVE & CONTINUE</Text>
+                  </TouchableOpacity>
+          </View>
           
         </Animated.View>
       </View>
@@ -104,11 +244,14 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   content: {
-    marginTop: 110,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 20,
-    marginLeft: 15,
+    // marginTop: 110,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // paddingHorizontal: 20,
+    // marginLeft: 15,
+    margin:20,
+    marginTop:40,
+    
   },
   logo: {
     width: 25,
@@ -175,6 +318,63 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "600",
     fontSize: 14,
+  },
+  pickerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: "100%",
+    height: height * 0.6,
+    position: "relative",
+  },
+  pickerColumn: {
+    flex: 1,
+    alignItems: "center",
+  },
+  listContainer: {
+    paddingVertical: height * 0.2,
+  },
+  itemContainer: {
+    height: centerItemHeight,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  itemText: {
+    color: "#808080",
+    fontSize: 16,
+  },
+  selectedText: {
+    color: "#FFA500",
+    fontSize: 34,
+    fontWeight: "bold",
+  },
+  centerLineTop: {
+    position: "absolute",
+    top: height * 0.3 - 38,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: "#007BFF",
+  },
+  centerLineBottom: {
+    position: "absolute",
+    top: height * 0.3 + 45,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: "#007BFF",
+  },
+  saveButton: {
+    backgroundColor: "#2e65ff",
+    paddingVertical: 12,
+    borderRadius: 40,
+    width: width * 0.75,
+    alignItems: "center",
+  },
+  saveButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+    fontFamily: "Lexend",
   },
 });
 

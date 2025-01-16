@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "StepsStamp",
+    "name": "Steps Stamp",
     "slug": "StepsStamp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,11 @@
       "expo-router",
       "expo-font"
     ],
+    "splash": {
+      "image": "./app/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "experiments": {
       "typedRoutes": true
     },
