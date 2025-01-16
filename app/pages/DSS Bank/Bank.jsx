@@ -66,7 +66,7 @@ export const Bank = () => {
           </View>
 
             <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 50  }}>
-           <Image source={require("../../assets/images/Woman.png")} style={{ width: width * 0.9, height: 323  }} />
+           <Image source={require("../../assets/images/Woman.png")} style={{ width: width * 0.9, height: height * 0.4  }} />
             </View>
 
             <View style={styles.cardBackgroundContainer}>
@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
     height: height * 0.33,
     // borderWidth:1,
     // borderColor:'#ffff'
+    
   },
   cardBackgroundImage: {
     height: height * 0.33, // Dynamic height

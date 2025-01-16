@@ -71,6 +71,7 @@ export const Wallet = () => {
               />
             </View>
           </View>
+          <ScrollView style={{ flex: 1, marginBottom: 60 }}>
 
             <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 40,  }}>
            <Image source={require("../../assets/images/Circle.png")} style={{ width: width * 0.9, height: height * 0.4, resizeMode: "contain",  }} />
@@ -117,6 +118,7 @@ export const Wallet = () => {
           </View>
         </View>
       </View>
+      </ScrollView>
 
          
         </Animated.View>
