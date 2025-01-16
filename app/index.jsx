@@ -33,6 +33,11 @@ import {OTPVerify }from "./pages/Login/OTPVerify";
 import {ChangePassword} from "./pages/Login/ChangePassword";
 import { Home2 } from "./pages/home/Home2";
 import {DSSBank} from "./pages/DSS Bank/DSSBank";
+import UsdWallet from "./pages/Wallet/UsdWallet";
+import SsbWallet from "./pages/Wallet/SsbWallet";
+import BlockchainWallet from "./pages/Wallet/BlockchainWallet";
+import TransactionHistory from "./pages/Wallet/TransactionHistory";
+import PoolRewards from "./pages/Rewards & Referrals/PoolRewards";
 
 
 const Stack = createNativeStackNavigator();
@@ -320,6 +325,50 @@ export default function Index() {
 <Stack.Screen
             name="DSS-Bank"
             component={DSSBank}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="UsdWallet"
+            component={UsdWallet}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="SsbWallet"
+            component={SsbWallet}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="BlockchainWallet"
+            component={BlockchainWallet}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="TransactionHistory"
+            component={TransactionHistory}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+<Stack.Screen
+            name="PoolRewards"
+            component={PoolRewards}
             options={{
               headerShown: false,
              
