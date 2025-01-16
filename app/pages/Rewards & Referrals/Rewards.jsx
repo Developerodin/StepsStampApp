@@ -15,17 +15,25 @@ import Icon1 from "../../assets/icons/Icon1.png";
 import Icon2 from "../../assets/icons/Icon2.png";
 import Icon3 from "../../assets/icons/Icon3.png";
 import Faq from "../../assets/icons/faq.png";
-import { LinearGradient } from "expo-linear-gradient";
 import SmallProgressBar from "../../components/graphs/SmallProgressBar";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import InviteCard from "../../components/cards/InviteCard";
+import GradientButton from "../../components/Button/GradientButton";
+import Vector from "../../assets/icons/Vector.png";
+import ReferralBonusCard from "../../components/cards/ReferralBonusCard";
+
 const { width, height } = Dimensions.get("window");
 
 export const Rewards = () => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity value of 0
-  const [activeTab, setActiveTab] = useState('Rewards');
+  const [activeTab, setActiveTab] = useState("Rewards");
+
   const handleSignIn = () => {
     navigation.navigate("SignIn");
+  };
+
+  const handelPoolRewards = () => {
+    navigation.navigate("PoolRewards");
   };
 
   useEffect(() => {
@@ -36,82 +44,11 @@ export const Rewards = () => {
     }).start();
   }, [fadeAnim]);
 
-  return (
-    <View style={styles.container}>
-      <StatusBar translucent={true} backgroundColor="#181A20" style="light" />
-
-      <View style={styles.topLeftGradient}>
-        <Image
-          source={require("../../assets/images/GradientTopLeft.png")}
-          style={styles.gradientImage}
-        />
-      </View>
-
-      <View style={styles.content}>
-        <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginTop: 30,
-              paddingHorizontal: 30,
-            }}
-          >
-            <Image
-              source={require("../../assets/icons/RightArrow.png")}
-              style={{ width: 25, height: 25 }}
-            />
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 20,
-                marginLeft: 15,
-                fontFamily: "Lexend",
-              }}
-            >
-              Reward & Referrals
-            </Text>
-            <View style={{ flex: 1 }} />
-            <View style={{ flexDirection: "row" }}>
-              <Image
-                source={require("../../assets/icons/token.png")}
-                style={{ width: 78, height: 30 }}
-              />
-            </View>
-          </View>
-          <ScrollView style={{ flex: 1 ,marginBottom:80}}>
-          <View style={{flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    marginTop: 20,
-    marginHorizontal: 10}}>
-      <View style={{flexDirection: 'row',
-    alignItems: 'center'}}>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'Rewards' && styles.activeTab]}
-          onPress={() => setActiveTab('Rewards')}
-        >
-          <Text style={[styles.tabText, activeTab === 'Rewards' && styles.activeTabText]}>
-            Rewards
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'Referrals' && styles.activeTab]}
-          onPress={() => setActiveTab('Referrals')}
-        >
-          <Text style={[styles.tabText, activeTab === 'Referrals' && styles.activeTabText]}>
-            Referrals
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={styles.faqContainer}>
-        <Image source={Faq} style={styles.faqIcon} />
-        <Text style={styles.faqText}>FAQs</Text>
-      </TouchableOpacity>
-    </View>
+  const renderContent = () => {
+    switch (activeTab) {
+      case "Rewards":
+        return (
+          <ScrollView style={{ flex: 1, marginBottom: 80 }}>
             <View
               style={{
                 flexDirection: "row",
@@ -129,28 +66,30 @@ export const Rewards = () => {
                 }}
               />
             </View>
-            <View style={styles.secondCard}>
-              <View style={styles.secondTextContainer}>
-                <Text style={styles.secondtitle}>Pool B</Text>
-                <Text style={styles.secondsubtitle}>
-                  Complete 10000 steps to join Pool B
-                </Text>
+            <TouchableOpacity onPress={handelPoolRewards}>
+              <View style={styles.secondCard}>
+                <View style={styles.secondTextContainer}>
+                  <Text style={styles.secondtitle}>Pool B</Text>
+                  <Text style={styles.secondsubtitle}>
+                    Complete 10000 steps to join Pool B
+                  </Text>
+                </View>
+                <View style={styles.progressBarContainer}>
+                  <SmallProgressBar
+                    size={80}
+                    percentage={40}
+                    duration={1000}
+                    image={
+                      <Image
+                        source={require("../../assets/icons/goalsB.png")}
+                        resizeMode="contain"
+                        style={{ width: 32, height: 32 }}
+                      />
+                    }
+                  />
+                </View>
               </View>
-              <View style={styles.progressBarContainer}>
-                <SmallProgressBar
-                  size={80}
-                  percentage={40}
-                  duration={1000}
-                  image={
-                    <Image
-                      source={require("../../assets/icons/goalsB.png")}
-                      resizeMode="contain"
-                      style={{ width: 32, height: 32 }}
-                    />
-                  }
-                />
-              </View>
-            </View>
+            </TouchableOpacity>
 
             <View style={styles.firstCard}>
               <View style={styles.firstCardContent}>
@@ -280,9 +219,139 @@ export const Rewards = () => {
                 </View>
               </View>
             </View>
-
-          
           </ScrollView>
+        );
+      case "Referrals":
+        return (
+          <ScrollView style={{ flex: 1, marginBottom: 80 }}>
+            <View style={{marginTop : 20}}>
+            <View style={styles.card}>
+              <Image
+                source={Icon1} // Replace with your icon URL
+                style={styles.icon}
+              />
+              <View style={styles.cardContent}>
+                <View>
+                  <Text style={styles.title}>21</Text>
+                  <Text style={styles.subText}>Active Referrals</Text>
+                </View>
+                <View style={styles.amountContainer}>
+                  <Text style={styles.amount}>+15 SSB</Text>
+                  <Text style={styles.subText}>Your Total Bonus</Text>
+                </View>
+              </View>
+            </View>
+            <View style={{alignSelf: 'center'}} >
+            <InviteCard referralCode="XUSER" />
+            </View>
+
+            <View style={{alignItems:"center",marginTop:25}}> 
+                <GradientButton title="INVITE A FRIEND" icon={Vector} />
+
+            </View>
+            <View style={{alignItems:"center",marginTop:25}}> 
+              <ReferralBonusCard />
+              </View>
+            </View>
+          </ScrollView>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <StatusBar translucent={true} backgroundColor="#181A20" style="light" />
+
+      <View style={styles.topLeftGradient}>
+        <Image
+          source={require("../../assets/images/GradientTopLeft.png")}
+          style={styles.gradientImage}
+        />
+      </View>
+
+      <View style={styles.content}>
+        <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: 30,
+              paddingHorizontal: 30,
+            }}
+          >
+            <Image
+              source={require("../../assets/icons/RightArrow.png")}
+              style={{ width: 25, height: 25 }}
+            />
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 20,
+                marginLeft: 15,
+                fontFamily: "Lexend",
+              }}
+            >
+              Reward & Referrals
+            </Text>
+            <View style={{ flex: 1 }} />
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                source={require("../../assets/icons/token.png")}
+                style={{ width: 78, height: 30 }}
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingHorizontal: 16,
+              paddingVertical: 10,
+              marginTop: 20,
+              marginHorizontal: 10,
+            }}
+          >
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <TouchableOpacity
+                style={[styles.tab, activeTab === "Rewards" && styles.activeTab]}
+                onPress={() => setActiveTab("Rewards")}
+              >
+                <Text
+                  style={[
+                    styles.tabText,
+                    activeTab === "Rewards" && styles.activeTabText,
+                  ]}
+                >
+                  Rewards
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.tab,
+                  activeTab === "Referrals" && styles.activeTab,
+                ]}
+                onPress={() => setActiveTab("Referrals")}
+              >
+                <Text
+                  style={[
+                    styles.tabText,
+                    activeTab === "Referrals" && styles.activeTabText,
+                  ]}
+                >
+                  Referrals
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.faqContainer}>
+              <Image source={Faq} style={styles.faqIcon} />
+              <Text style={styles.faqText}>FAQs</Text>
+            </TouchableOpacity>
+          </View>
+          {renderContent()}
         </Animated.View>
       </View>
     </View>
@@ -439,34 +508,33 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: 'transparent', // Inactive tab background
+    backgroundColor: "transparent", // Inactive tab background
     marginRight: 10,
   },
   activeTab: {
-    backgroundColor: '#246BFD', // Active tab background
+    backgroundColor: "#246BFD", // Active tab background
   },
   tabText: {
-    color: '#5E6272', // Inactive tab text color
+    color: "#5E6272", // Inactive tab text color
     fontSize: 13,
-    fontFamily: 'Lexend',
+    fontFamily: "Lexend",
   },
   activeTabText: {
-    color: '#fff', // Active tab text color
+    color: "#fff", // Active tab text color
   },
   faqContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   faqIcon: {
-    marginRight: 5, 
+    marginRight: 5,
     height: 18,
     width: 18,
-
   },
   faqText: {
-    color: '#246BFD', // FAQ text color
+    color: "#246BFD", // FAQ text color
     fontSize: 13,
-    fontFamily: 'Lexend',
+    fontFamily: "Lexend",
   },
 });
 

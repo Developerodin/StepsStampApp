@@ -24,8 +24,16 @@ export const Wallet = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity value of 0
   const [activeTab, setActiveTab] = useState("Walk Mode");
 
-  const handleSignIn = () => {
-    navigation.navigate("SignIn");
+ const handelUsdWallet = () => {
+    navigation.navigate("UsdWallet");
+  };
+
+  const handelSsbWallet = () => {
+    navigation.navigate("SsbWallet");
+  };
+
+  const handelBlockchainWallet = () => {
+    navigation.navigate("BlockchainWallet");
   };
 
   useEffect(() => {
@@ -76,7 +84,7 @@ export const Wallet = () => {
             <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 40,  }}>
            <Image source={require("../../assets/images/Circle.png")} style={{ width: width * 0.9, height: height * 0.4, resizeMode: "contain",  }} />
             </View>
-
+            <TouchableOpacity onPress={handelUsdWallet}>
             <View style={styles.card}>
         <Image
           source={USDT} // Replace with your icon URL
@@ -90,7 +98,8 @@ export const Wallet = () => {
           </View>
         </View>
       </View>
-
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handelSsbWallet}>
       <View style={styles.card}>
         <Image
           source={SSB} // Replace with your icon URL
@@ -104,7 +113,8 @@ export const Wallet = () => {
           </View>
         </View>
       </View>
-
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handelBlockchainWallet}>
       <View style={styles.card}>
         <Image
           source={Blockchain} // Replace with your icon URL
@@ -118,6 +128,7 @@ export const Wallet = () => {
           </View>
         </View>
       </View>
+      </TouchableOpacity>
       </ScrollView>
 
          
