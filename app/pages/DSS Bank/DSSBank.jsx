@@ -30,6 +30,10 @@ export const DSSBank = () => {
     navigation.goBack();
   };
 
+  const handleAutoStacking = () => {
+    navigation.navigate("AutoStacking");
+  };
+
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1, // Final opacity value of 1
@@ -120,7 +124,7 @@ export const DSSBank = () => {
             <Text style={{ color: "#fff", fontSize: 16, fontFamily: "Lexend", fontWeight: "600", alignSelf: "flex-start", marginTop: 20, marginLeft: 20 }}>Become a Stakeholder</Text>
 
             <View style={{alignItems:"center",marginTop:20}}> 
-                <GradientButton title="PARTICIPATE IN STAKING POOL" icon={Piggy} />
+                <GradientButton title="PARTICIPATE IN STAKING POOL" icon={Piggy} onPress={handleAutoStacking} />
 
             </View>
             <View style={{alignItems:"center",marginTop:35}}> 

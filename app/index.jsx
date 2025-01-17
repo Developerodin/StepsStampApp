@@ -38,6 +38,11 @@ import SsbWallet from "./pages/Wallet/SsbWallet";
 import BlockchainWallet from "./pages/Wallet/BlockchainWallet";
 import TransactionHistory from "./pages/Wallet/TransactionHistory";
 import PoolRewards from "./pages/Rewards & Referrals/PoolRewards";
+import RewardsHistory from "./pages/Rewards & Referrals/RewardsHistory";
+import Referrals from "./pages/Rewards & Referrals/Referrals";
+import AutoStacking from "./pages/DSS Bank/AutoStacking";
+import StackingPool from "./pages/DSS Bank/StackingPool";
+import StackingAnalysis from "./pages/DSS Bank/StackingAnalysis";
 
 
 const Stack = createNativeStackNavigator();
@@ -216,7 +221,7 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "AppSlides"
+            "Tabs"
           //  Auth ? "Tabs" : "AppSlides"
           }
         >
@@ -374,6 +379,53 @@ export default function Index() {
              
             }}
           />
+
+<Stack.Screen
+            name="RewardsHistory"
+            component={RewardsHistory}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="Referrals"
+            component={Referrals}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="AutoStacking"
+            component={AutoStacking}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="StackingPool"
+            component={StackingPool}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
+<Stack.Screen
+            name="StackingAnalysis"
+            component={StackingAnalysis}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+          
+
            
 
         </Stack.Navigator>
