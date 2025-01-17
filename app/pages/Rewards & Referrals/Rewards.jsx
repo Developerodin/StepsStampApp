@@ -36,6 +36,17 @@ export const Rewards = () => {
     navigation.navigate("PoolRewards");
   };
 
+
+  const handelRewardsHistory = () => {
+    navigation.navigate("RewardsHistory");
+  };
+
+
+  const handelReferrals = () => {
+    navigation.navigate("Referrals");
+  };
+
+
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1, // Final opacity value of 1
@@ -123,6 +134,7 @@ export const Rewards = () => {
               >
                 Rewards History
               </Text>
+              <TouchableOpacity onPress={handelRewardsHistory}>
               <Text
                 style={{
                   color: "#B5B5BE",
@@ -133,6 +145,7 @@ export const Rewards = () => {
               >
                 See More >{" "}
               </Text>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.card}>
@@ -225,6 +238,7 @@ export const Rewards = () => {
         return (
           <ScrollView style={{ flex: 1, marginBottom: 80 }}>
             <View style={{marginTop : 20}}>
+              <TouchableOpacity onPress={handelReferrals}>
             <View style={styles.card}>
               <Image
                 source={Icon1} // Replace with your icon URL
@@ -241,6 +255,7 @@ export const Rewards = () => {
                 </View>
               </View>
             </View>
+            </TouchableOpacity>
             <View style={{alignSelf: 'center'}} >
             <InviteCard referralCode="XUSER" />
             </View>
