@@ -81,8 +81,8 @@ export const StackingPool = () => {
     navigation.goBack();
   };
 
-  const handelUsdWallet = () => {
-    navigation.navigate("TransactionHistory");
+  const handelStake = () => {
+    navigation.navigate("EnableStacking");
     };
 
   useEffect(() => {
@@ -153,6 +153,7 @@ export const StackingPool = () => {
                 marginBottom: 10,
               }}
             >
+                <TouchableOpacity onPress={handelStake}>
              <View style={styles.card}>
               <Image
                 source={Icon1} // Replace with your icon URL
@@ -168,7 +169,9 @@ export const StackingPool = () => {
                 </View>
               </View>
             </View>
+            </TouchableOpacity>
             </View>
+
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 0 }}>
                 <GradientCard2 />
               </View>
