@@ -13,6 +13,7 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import Deposit from "../../assets/icons/Deposit.png";
 import Withdrawl from "../../assets/icons/Widrawel.png";
+import FilterModal from "../../components/models/FilterModal";
 
 const { width, height } = Dimensions.get("window");
 
@@ -20,7 +21,7 @@ export const TransactionHistory = () => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity value of 0
   const [activeTab, setActiveTab] = useState("Walk Mode");
-
+  const [isModalVisible, setModalVisible] = useState(false);
   const handleBack = () => {
     navigation.goBack();
   };
@@ -73,10 +74,13 @@ export const TransactionHistory = () => {
             </Text>
             <View style={{ flex: 1 }} />
             <View style={{ flexDirection: "row" }}>
-              <Image
-                source={require("../../assets/icons/Filter.png")}
-                style={{ width: 28, height: 28 }}
-              />
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Image
+                  source={require("../../assets/icons/Filter.png")}
+                  style={{ width: 28, height: 28 }}
+                />
+              </TouchableOpacity>
+             
             </View>
           </View>
           <ScrollView style={{ flex: 1, marginBottom: 60 ,marginTop: 20}}>
@@ -150,9 +154,14 @@ export const TransactionHistory = () => {
                 </View>
               </View>
             </View>
+
           </ScrollView>
         </Animated.View>
       </View>
+      <FilterModal
+        isVisible={isModalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </View>
   );
 };

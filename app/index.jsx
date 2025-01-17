@@ -43,6 +43,7 @@ import Referrals from "./pages/Rewards & Referrals/Referrals";
 import AutoStacking from "./pages/DSS Bank/AutoStacking";
 import StackingPool from "./pages/DSS Bank/StackingPool";
 import StackingAnalysis from "./pages/DSS Bank/StackingAnalysis";
+import EnableStacking from "./pages/DSS Bank/EnableStaking";
 
 
 const Stack = createNativeStackNavigator();
@@ -221,7 +222,7 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "Tabs"
+            "AppSlides"
           //  Auth ? "Tabs" : "AppSlides"
           }
         >
@@ -424,7 +425,16 @@ export default function Index() {
              
             }}
           />
-          
+
+<Stack.Screen
+            name="EnableStacking"
+            component={EnableStacking}
+            options={{
+              headerShown: false,
+             
+            }}
+          />
+
 
            
 

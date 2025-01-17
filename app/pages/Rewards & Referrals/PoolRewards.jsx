@@ -83,8 +83,8 @@ export const PoolRewards = () => {
     navigation.goBack();
   };
 
-  const handelUsdWallet = () => {
-    navigation.navigate("TransactionHistory");
+  const handelStake = () => {
+    navigation.navigate("EnableStacking");
     };
 
   useEffect(() => {
