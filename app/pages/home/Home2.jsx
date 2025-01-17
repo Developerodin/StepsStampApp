@@ -9,6 +9,8 @@ import RunningCard from '../../components/cards/RunningCard'
 import WalkWeekGraph from '../../components/graphs/WalkWeekGraph'
 import { Graph1 } from '../../components/graphs/Graph1'
 import Chart1 from '../../components/graphs/Chart1'
+import Chart2 from '../../components/graphs/Chart2'
+import Chart3 from '../../components/graphs/Chart3'
 
 export const Home2 = () => {
   return (
@@ -64,6 +66,16 @@ export const Home2 = () => {
 
       <View style={{marginTop:50,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
         <Chart1 />
+      </View>
+
+
+      <View style={{marginTop:50,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <Chart2 />
+      </View>
+
+
+      <View style={{marginTop:50,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <Chart3 />
       </View>
 
         </View>
