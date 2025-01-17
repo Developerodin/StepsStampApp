@@ -5,6 +5,11 @@ import RewardModeStepCountProgressBar from '../../components/graphs/RewardModeSt
 import SmallProgressBar from '../../components/graphs/SmallProgressBar'
 import { MetaMaskModelConnect } from '../../components/MetaMaskModel/MetaMaskModelConnect'
 
+import RunningCard from '../../components/cards/RunningCard'
+import WalkWeekGraph from '../../components/graphs/WalkWeekGraph'
+import { Graph1 } from '../../components/graphs/Graph1'
+import Chart1 from '../../components/graphs/Chart1'
+
 export const Home2 = () => {
   return (
     <ScrollView style={styles.container}>
@@ -38,6 +43,29 @@ export const Home2 = () => {
         <MetaMaskModelConnect />
       </View>
 
+
+
+      <View style={{marginTop:50,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <WalkWeekGraph width={300} 
+           height={250} 
+     
+      />
+      </View>
+
+
+
+      <View style={{marginTop:50,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <Graph1 
+          
+     
+      />
+      </View>
+
+
+      <View style={{marginTop:50,flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <Chart1 />
+      </View>
+
         </View>
 
 
@@ -50,6 +78,7 @@ export const Home2 = () => {
 
 const styles = StyleSheet.create({ 
   container: {
-    flex:1
+    flex:1,
+    backgroundColor:'red'
   }
 })
