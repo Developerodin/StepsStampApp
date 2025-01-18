@@ -44,6 +44,7 @@ import AutoStacking from "./pages/DSS Bank/AutoStacking";
 import StackingPool from "./pages/DSS Bank/StackingPool";
 import StackingAnalysis from "./pages/DSS Bank/StackingAnalysis";
 import EnableStacking from "./pages/DSS Bank/EnableStaking";
+import PurchesBlockChainContract from "./components/Contract/PurchesBlockChainContract";
 
 
 const Stack = createNativeStackNavigator();
@@ -222,10 +223,17 @@ export default function Index() {
     <NavigationContainer onLayout={onLayoutRootView}>
       <Stack.Navigator
           initialRouteName={
-            "AppSlides"
+            "Block Chain"
           //  Auth ? "Tabs" : "AppSlides"
           }
         >
+          <Stack.Screen
+            name="Block Chain"
+            component={PurchesBlockChainContract}
+            options={{
+              headerShown: true,
+            }}
+          />
        <Stack.Screen
             name="Tabs"
             component={Tabs}

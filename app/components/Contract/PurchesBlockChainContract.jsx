@@ -1,103 +1,134 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { ethers } from 'ethers';
-import 'react-native-get-random-values'; // Polyfill for random values
-import '@ethersproject/shims'; // Polyfill for ethers.js
-import { MetaMaskModelConnect } from '../MetaMaskModel/MetaMaskModelConnect';
+import { StyleSheet, View, Text, Alert } from 'react-native';
+import GradientButton from '../Button/GradientButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ethers, parseEther } from 'ethers'; // Import ethers
+import { WalletConnectModal, useWalletConnectModal } from '@walletconnect/modal-react-native';
+import { Abi } from './ABIFile'; // Your contract's ABI file
+
+const projectId = 'f6acabe1be0da6ade435837b8c4d9be6';
+
+const providerMetadata = {
+	name: 'YOUR_PROJECT_NAME',
+	description: 'YOUR_PROJECT_DESCRIPTION',
+	url: 'https://your-project-website.com/',
+	icons: ['https://your-project-logo.com/'],
+	redirect: {
+		native: 'YOUR_APP_SCHEME://',
+		universal: 'YOUR_APP_UNIVERSAL_LINK.com',
+	},
+};
+
+const CONTRACT_ADDRESS = '0x46404BABE387474a6B1F407955BE9eF6Ac556224';
+const CHAIN_ID = 97; // Binance Smart Chain Testnet
 
 const PurchesBlockChainContract = () => {
-  const [contract, setContract] = useState(null);
-  const [provider, setProvider] = useState(null);
-  const [purchaseAmount, setPurchaseAmount] = useState(''); // Amount to send
+	const [bnbPrice, setBnbPrice] = useState('0.01');
+	const [tokenURI, setTokenURI] = useState('https://meet.google.com/bsr-hxrd-zor');
+	const { open, isConnected, address, provider } = useWalletConnectModal(); // WalletConnect hook
 
-  // Replace with your DSE testnet RPC URL
-  const DSE_TESTNET_RPC = 'https://data-seed-prebsc-1-s1.binance.org:8545';
-  const CHAIN_ID = 97; // BSC Testnet Chain ID
+	// Save Wallet Address to AsyncStorage
+	const saveWalletAddress = async (walletAddress) => {
+		try {
+			await AsyncStorage.setItem('walletAddress', walletAddress);
+			console.log('Wallet address saved:', walletAddress);
+		} catch (error) {
+			console.error('Error saving wallet address:', error);
+		}
+	};
 
-  // Replace with your contract's ABI and address
-  const CONTRACT_ABI = [
-    {
-      "inputs": [
-        { "internalType": "uint256", "name": "amount", "type": "uint256" }
-      ],
-      "name": "purchase",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    }
-  ];
-  const CONTRACT_ADDRESS = '0xYourSmartContractAddress'; // Replace with your contract's address
+	useEffect(() => {
+		if (address) {
+			saveWalletAddress(address);
+		}
+	}, [address]);
 
-  useEffect(() => {
-    // Initialize provider and contract
-    const init = async () => {
-      try {
-        const provider = new ethers.JsonRpcProvider(DSE_TESTNET_RPC, {
-          name: 'bsc-testnet',
-          chainId: CHAIN_ID,
-        });
+	// Mint NFT with BNB
+	const mintNFT = async () => {
+		if (!isConnected) {
+			Alert.alert('Error', 'Please connect your wallet first.');
+			return;
+		}
 
-        const signer = provider.getSigner(); // Use if signing transactions
-        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer || provider);
+		try {
+			const walletProvider = new ethers.BrowserProvider(provider, CHAIN_ID); // Use the WalletConnect provider
+			const walletSigner = await walletProvider.getSigner(); // Get the signer from the wallet
 
-        setProvider(provider);
-        setContract(contract);
-      } catch (error) {
-        console.error('Error initializing provider or contract:', error.message);
-      }
-    };
+			// Initialize the contract with the signer
+			const contract = new ethers.Contract(CONTRACT_ADDRESS, Abi, walletSigner);
 
-    // init();
-  }, []);
+			// Convert BNB price to Wei
+			const amountInWei = parseEther(bnbPrice);
+   console.log("amountInWei",amountInWei);
+			// Send the transaction
+			const tx = await contract.mintNFTWithBNB(tokenURI, {
+				value: amountInWei, // Send BNB value
+			});
+			await tx.wait(); // Wait for the transaction to be confirmed
 
-  // Call the purchase method on the contract
-  const callPurchase = async () => {
-    if (!contract) {
-      Alert.alert('Error', 'Contract not initialized.');
-      return;
-    }
+			Alert.alert('Success', 'NFT minted successfully!');
+		} catch (error) {
+			Alert.alert('Error', `Transaction failed: ${error.message}`);
+			console.error('Transaction error:', error);
+		}
+	};
 
-    if (!purchaseAmount) {
-      Alert.alert('Error', 'Please enter a valid amount.');
-      return;
-    }
+	// Handle WalletConnect Button
+	const handleWalletConnect = async () => {
+		try {
+			if (isConnected) {
+				await provider?.disconnect();
+				console.log('Disconnected from wallet');
+			} else {
+				await open();
+				console.log('Connecting to wallet...');
+			}
+		} catch (error) {
+			console.error('Error during WalletConnect:', error);
+		}
+	};
 
-    try {
-      // Convert purchase amount to Wei (smallest Ether unit)
-      const amountInWei = ethers.utils.parseEther(purchaseAmount); // Corrected syntax
+	return (
+		<View style={styles.container}>
+			<Text style={styles.heading}>Mint NFT with WalletConnect</Text>
+			<Text>{isConnected ? `Wallet Address: ${address}` : 'No Wallet Connected'}</Text>
+      <View style={{marginTop:50}}>
+			<GradientButton
+				onPress={handleWalletConnect}
+				title={isConnected ? 'DISCONNECT WALLET' : 'CONNECT WALLET'}
+				icon={require('../../assets/icons/metamask.png')}
+			/>
+      </View>
+      <View style={{marginTop:50}}>
+      <GradientButton
+				onPress={mintNFT}
+				title="Mint NFT"
+				disabled={!isConnected} // Disable the button if wallet not connected
+			/> 
+      </View>
 
-      // Call the purchase method with the value
-      const tx = await contract.purchase({
-        value: amountInWei, // Sending Ether along with the transaction
-      });
+			
 
-      // Wait for the transaction to be mined
-      await tx.wait();
-      Alert.alert('Success', 'Purchase transaction completed!');
-    } catch (error) {
-      Alert.alert('Error', `Transaction failed: ${error.message}`);
-    }
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Smart Contract Purchase</Text>
-      <MetaMaskModelConnect />
-      <TextInput
-        style={styles.input}
-        placeholder="Enter amount in Ether"
-        keyboardType="numeric"
-        onChangeText={setPurchaseAmount}
-      />
-      <Button title="Make Purchase" onPress={callPurchase} />
-    </View>
-  );
+			<WalletConnectModal
+				projectId={projectId}
+				providerMetadata={providerMetadata}
+			/>
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
-  title: { fontSize: 20, marginBottom: 20 },
-  input: { borderWidth: 1, width: '100%', padding: 10, marginVertical: 10 }
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 20,
+	},
+	heading: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		marginBottom: 16,
+	},
 });
 
 export default PurchesBlockChainContract;
